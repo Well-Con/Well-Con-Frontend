@@ -1,69 +1,175 @@
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 
-import '../../styles/Appointment.css';
+// Custom modal component for confirmation
+const ConfirmationModal = ({ isOpen, title, message, onConfirm, onCancel }) => {
+  if (!isOpen) return null;
+
+  return createPortal(
+    <div className="fixed inset-0  backdrop-blur-sm flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-xl shadow-2xl p-6 md:p-8 max-w-sm w-full transform transition-all duration-300 ease-in-out scale-95 md:scale-100">
+        <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
+        <p className="text-gray-600 mb-6">{message}</p>
+        <div className="flex justify-end gap-3">
+          <button
+            onClick={onCancel}
+            className="px-6 py-2 rounded-lg text-gray-700 font-medium bg-gray-200 hover:bg-gray-300 transition-colors duration-200"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-6 py-2 rounded-lg text-white font-medium bg-green-600 hover:bg-green-700 transition-colors duration-200"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
+
 const appointments = [
   {
-    id: 1,
-    patientName: 'Jane Doe',
-    patientInfo: '28 years old, New Patient',
-    time: '10:00 AM - 10:30 AM'
+    pid: 1,
+    name: 'Rahul',
+    sex: 'Male',
+    category: 'Cardiologist',
+    description: 'Experienced a catastrophic heart attack 5 mins ago',
+    timeLog: '21:30 Hours',
+    prevHistory: 'Yes',
+    isAccepted: 'false'
   },
   {
-    id: 2,
-    patientName: 'John Smith',
-    patientInfo: '35 years old, Follow-up',
-    time: '11:00 AM - 11:30 AM'
+    pid: 2,
+    name: 'Shiva',
+    sex: 'Male',
+    category: 'Psychologist',
+    description: "Can't sleep properly due to stress and work load. Not able to enjoy life!",
+    timeLog: '18:30 Hours',
+    prevHistory: 'No',
+    isAccepted: 'false'
   },
   {
-    id: 3,
-    patientName: 'Emily White',
-    patientInfo: '45 years old, Annual Check-up',
-    time: '1:00 PM - 1:30 PM'
+    pid: 3,
+    name: 'Akshith',
+    sex: 'Male',
+    category: 'Orthopaedist',
+    description: 'Fractures reported in the wrist due to excessive coding on Flutter without pause',
+    timeLog: '03:30 Hours',
+    prevHistory: 'Yes',
+    isAccepted: 'false'
+  },
+  {
+    pid: 4,
+    name: 'Harshita',
+    sex: 'Female',
+    category: 'Dermatologist',
+    description: 'Needs to get rid of Pimples on her skin',
+    timeLog: '21:30 Hours',
+    prevHistory: 'Yes',
+    isAccepted: 'false'
+  },
+  {
+    pid: 5,
+    name: 'Vivek',
+    sex: 'Male',
+    category: 'Physician',
+    description: 'Su=spected to be Covid + due to violation of Lockdown norms during Lockdown.',
+    timeLog: '14:30 Hours',
+    prevHistory: 'No',
+    isAccepted: 'false'
   },
 ];
+
 const Appointments = () => {
-const handleAccept = (appointmentId) => {
-    console.log(`Appointment with ID ${appointmentId} accepted.`);
-    // Here you would typically add logic to update the appointment status in your database
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+
+  const handleAcceptClick = (appointment) => {
+    setSelectedAppointment(appointment);
+    setIsModalOpen(true);
+  };
+
+  const handleConfirm = () => {
+    // Logic to handle the "accept" action for the selected appointment
+    console.log(`Appointment for ${selectedAppointment.name} has been accepted.`);
+    setIsModalOpen(false);
+    selectedAppointment.isAccepted = 'true'; // Update the appointment status
+
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    setSelectedAppointment(null);
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">All Appointments</h1>
-      <div className="space-y-4">
-        {appointments.map((appointment) => (
-          <div key={appointment.id} className="w-full bg-white shadow-lg rounded-lg p-4 flex items-center justify-between hover:shadow-xl transition-shadow duration-300">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center space-x-4">
-                {/* Patient Initial Circle */}
-                <div className="flex-shrink-0 h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold text-xl">
-                  {appointment.patientName.charAt(0)}
-                </div>
-                {/* Patient Info */}
-                <div className="min-w-0 flex-1">
-                  <p className="text-xl font-bold text-gray-900 truncate">
-                    {appointment.patientName}
-                  </p>
-                  <p className="text-sm text-gray-500 truncate mt-1">
-                    <span className="text-gray-600 font-medium">{appointment.patientInfo}</span> | <span className="text-blue-600">{appointment.time}</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            {/* Accept Button */}
-            <div className="flex-shrink-0 ml-4">
-              <button
-                onClick={() => handleAccept(appointment.id)}
-                className="w-full sm:w-auto px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
-              >
-                Accept
-              </button>
-            </div>
+    <div >
+      <div className="w-full bg-white rounded-3xl shadow-2xl overflow-hidden">
+        <header className="p-6 md:p-8 border-b border-gray-200 bg-gray-50">
+          <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight">Live Cases</h1>
+          <p className="text-sm text-gray-500 mt-1">CASES NOW</p>
+        </header>
+
+        <div className="p-6 md:p-8">
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full divide-y divide-gray-200">
+              <thead className="bg-white">
+                <tr>
+                  {['PID', 'Name', 'Sex', 'Category', 'Description', 'Time Log', 'Prev History', 'Action'].map((header) => (
+                    <th
+                      key={header}
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                    >
+                      {header}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {appointments.map((appointment) => (
+                  <tr key={appointment.pid} className="hover:bg-gray-50 transition-colors duration-150">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{appointment.pid}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{appointment.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{appointment.sex}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{appointment.category}</td>
+                    <td className="px-6 py-4 max-w-xs text-sm text-gray-600">{appointment.description}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{appointment.timeLog}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                      <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${appointment.prevHistory === 'Yes' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                        }`}>
+                        {appointment.prevHistory}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ">
+                      <button
+                        disabled={appointment.isAccepted === 'true'}
+                        onClick={() => handleAcceptClick(appointment)}
+                        style={{ backgroundColor: appointment.isAccepted === 'true' ? 'gray' : 'green' }}
+                        className="w-full cursor-pointer px-4 py-2 rounded-full text-white font-medium text-xs hover:bg-green-600 shadow-md transition-all duration-200 transform hover:scale-105"
+                      >
+                        {appointment.isAccepted === 'true' ? 'Accepted' : 'Accept'}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ))}
+        </div>
       </div>
+      <ConfirmationModal
+        isOpen={isModalOpen}
+        title="Confirm Acceptance"
+        message={`Are you sure you want to accept the appointment for ${selectedAppointment?.name}?`}
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
     </div>
   );
 };
+
 export default Appointments;
-
-
