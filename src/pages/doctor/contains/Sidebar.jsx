@@ -22,7 +22,7 @@ const Sidebar = () => {
                         : "logoContainer active"
                 }
             >
-                <i className="fa-brands fa-slack icon"></i>
+                <i className="fa-brands fa-slack text-green-500 fa-lg"></i>
                 <h2 className="title ">Well-Con</h2>
             </div>
 
