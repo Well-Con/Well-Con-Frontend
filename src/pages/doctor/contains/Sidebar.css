@@ -1,0 +1,167 @@
+ body {
+          font-family: 'Red Hat Display', serif;
+          background-color: #f4f9f4;
+          overflow-x: hidden;
+        }
+
+        .sidebar {
+          background-color: #ffffff;
+          position: relative;
+          padding: 2rem 3rem;
+          width: 16rem;
+          height: 100vh;
+          transition: 0.5s all;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .sidebar.active {
+          width: 3rem;
+        }
+
+        .logoContainer {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+        }
+        .logoContainer h2.title {
+          font-size: 27.42px;
+          color: #2ecc71;
+          padding-left: 1rem;
+          transition: 0.5s;
+        }
+        .logoContainer.active h2.title {
+          opacity: 0;
+        }
+
+        .burgerContainer {
+          position: absolute;
+          right: 0;
+          top: calc(9rem / 1.15);
+          width: 35px;
+          height: 35px;
+          border-radius: 2rem;
+          background-color: #2ecc71;
+          z-index: 1;
+          transform: translateX(50%);
+          transition: 0.5s all;
+        }
+        .burgerTrigger {
+          width: 35px;
+          height: 35px;
+          background-color: red;
+          cursor: pointer;
+          opacity: 0;
+          position: relative;
+          z-index: 6;
+        }
+        .burgerMenu {
+          background-color: #2ecc71;
+          position: relative;
+          z-index: 1;
+          width: 20px;
+          height: 3px;
+          border-radius: 2rem;
+          bottom: calc(35px / 2);
+          left: 0.45rem;
+          transition: 0.5s all;
+        }
+        .burgerMenu::after {
+          content: "";
+          background-color: #ffffff;
+          position: absolute;
+          width: 20px;
+          height: 3px;
+          border-radius: 2rem;
+          top: 0.4rem;
+          transform: translateY(-0.4rem) rotate(45deg);
+          transition: 0.5s all;
+        }
+        .burgerMenu::before {
+          content: "";
+          background-color: #ffffff;
+          position: absolute;
+          width: 20px;
+          height: 3px;
+          border-radius: 2rem;
+          top: -0.4rem;
+          transform: translateY(0.4rem) rotate(-45deg);
+          transition: 0.5s all;
+        }
+        .burgerContainer.active .burgerMenu {
+          background-color: #ffffff;
+        }
+        .burgerContainer.active .burgerMenu::before,
+        .burgerContainer.active .burgerMenu::after {
+          transform: rotate(0deg) translateY(0);
+        }
+
+        .profileContainer {
+          display: flex;
+          align-items: center;
+          padding-top: 3rem;
+        }
+        .profileContents {
+          padding-left: 1rem;
+          transition: 0.5s;
+        }
+        .profileContents p.name {
+          margin: 0;
+          font-size: 16.7px;
+          color: #141313;
+          font-weight: bold;
+          text-transform: capitalize;
+        }
+        .profileContents p {
+          margin: 0;
+          font-size: 13.9px;
+          color: #141313;
+          text-transform: lowercase;
+        }
+        .sidebar.active .profileContents {
+          opacity: 0;
+        }
+
+        .contentsContainer {
+          margin-top: 2rem;
+        }
+        .contentsContainer ul {
+          display: flex;
+          flex-direction: column;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .contentsContainer li {
+          display: flex;
+          align-items: center;
+          margin: 0.75rem 0;
+          padding: 0.75rem 0;
+          border-radius: 1rem;
+          cursor: pointer;
+        }
+        .contentsContainer li a {
+          text-decoration: none;
+          color: #141313;
+          font-size: 20px;
+          display: flex;
+          align-items: center;
+          margin-left: 0.5rem;
+          transition: 0.25s;
+        }
+        .contentsContainer li.active {
+          background-color: #f4f9f4;
+        }
+        .contentsContainer li.active a {
+          color: #2ecc71;
+        }
+        .contentsContainer li:hover {
+          background-color: #f2f2f2;
+        }
+       .sidebar.active .contentsContainer a .link-text {
+         opacity: 0;   /* only hide text */
+       }
+
+        .sidebar.active .contentsContainer a i {
+       opacity: 1;   /* keep icons visible */
+       }
