@@ -108,9 +108,9 @@ const Appointments = () => {
   return (
     <div >
       <div className="w-full bg-white rounded-3xl shadow-2xl overflow-hidden">
-        <header className="p-6 md:p-8 border-b border-gray-200 bg-gray-50">
-          <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight">Live Cases</h1>
-          <p className="text-sm text-gray-500 mt-1">CASES NOW</p>
+        <header className="p-6 md:p-8 border-b border-gray-200 bg-50">
+          <h1 className="text-3xl font-extrabold text-800 tracking-tight">Live Cases</h1>
+          <p className="text-sm text-500 mt-1">CASES NOW</p>
         </header>
 
         <div className="p-6 md:p-8">
@@ -122,7 +122,7 @@ const Appointments = () => {
                     <th
                       key={header}
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider"
+                      className="px-6 py-3 text-left text-xs font-semibold text-700 uppercase tracking-wider"
                     >
                       {header}
                     </th>
@@ -132,13 +132,13 @@ const Appointments = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {appointments.map((appointment) => (
                   <tr key={appointment.pid} className="hover:bg-gray-50 transition-colors duration-150">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{appointment.pid}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{appointment.name}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{appointment.sex}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{appointment.category}</td>
-                    <td className="px-6 py-4 max-w-xs text-sm text-gray-600">{appointment.description}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{appointment.timeLog}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-900">{appointment.pid}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-600">{appointment.name}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-600">{appointment.sex}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-600">{appointment.category}</td>
+                    <td className="px-6 py-4 max-w-xs text-sm text-600">{appointment.description}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-600">{appointment.timeLog}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-600">
                       <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${appointment.prevHistory === 'Yes' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                         }`}>
                         {appointment.prevHistory}

@@ -23,7 +23,7 @@ const Sidebar = () => {
                 }
             >
                 <i className="fa-brands fa-slack icon"></i>
-                <h2 className="title">CareHub</h2>
+                <h2 className="title ">Well-Con</h2>
             </div>
 
             {/*toggle button*/}
