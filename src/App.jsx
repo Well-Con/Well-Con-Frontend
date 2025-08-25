@@ -7,7 +7,7 @@ import Message from './pages/doctor/Message';
 import Connect from './pages/doctor/Connect';
 import History from './pages/doctor/History';
 import Appointment from './pages/doctor/Appointment';
-import Signindoctor from './pages/doctor/signin.jsx'
+import Signindoctor from './pages/doctor/Login/Signindoctor.jsx';
 import SigninPatient from './pages/patient/signin.jsx'; 
 import Chat from './pages/doctor/Chat.jsx'
 import PersonalDetails from './pages/doctor/Forms/Personal.jsx';

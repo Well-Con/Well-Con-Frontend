@@ -18,12 +18,10 @@ const Signindoctor = () => {
           <h1>Create Account</h1>
           <div className="social-icons">
             <a href="#" className="icon"><FaGooglePlusG /></a>
-            <a href="#" className="icon"><FaFacebookF /></a>
-            <a href="#" className="icon"><FaGithub /></a>
-            <a href="#" className="icon"><FaLinkedinIn /></a>
+            
           </div>
           <span>or use your email for registration</span>
-          <input type="text" placeholder="Name" name="name" />
+          
           <input type="email" placeholder="Email" name="email" />
           <input type="password" placeholder="Password" name="password" />
           <button type="submit">Sign Up</button>
