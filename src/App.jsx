@@ -2,10 +2,10 @@ import './App.css';
 
 
 import Layout from './Layouts/Layout';
-import Dashboard from './pages/doctor/Dashboard';
-import Message from './pages/doctor/Message';
+import Dashboard from './pages/doctor/Dashboard/Dashboard.jsx';
+import Message from './pages/doctor/Message/Message.jsx';
 import Connect from './pages/doctor/Connect';
-import History from './pages/doctor/History';
+import History from './pages/doctor/History/History.jsx';
 import Appointment from './pages/doctor/Appointment';
 import Signindoctor from './pages/doctor/Login/Signindoctor.jsx';
 import SigninPatient from './pages/patient/signin.jsx'; 

@@ -25,7 +25,6 @@
 
 import Sidebar from '../pages/doctor/contains/Sidebar';
 
-import Footer from '../pages/doctor/contains/Footer';
 
 
 import { Outlet } from 'react-router-dom';

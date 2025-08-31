@@ -214,12 +214,7 @@ const Sidebar = () => {
                             </a>
                         </li>
 
-                        <li className={location.pathname === "/connect" ? "active" : ""}>
-                            <a href="/connect">
-                                <i className="fa-solid fa-headset icon"></i>&nbsp;&nbsp;
-                                <p className='link-text'>Connect</p>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
