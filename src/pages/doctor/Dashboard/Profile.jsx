@@ -2,7 +2,7 @@
 export default function ProfileAndStats() {
   return (
     <div className="bg-white p-6 rounded-3xl shadow-lg">
-      <h2 className="text-2xl font-bold text-gray-800">Good Morning Dr. Kim!</h2>
+      <h2 className="text-2xl font-bold text-gray-800">Good Morning Dr. Neeraj!</h2>
       <div className="mt-4 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
         <div className="w-full md:w-2/3 bg-gradient-to-br from-purple-200 to-blue-200 p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between">
           <div className="flex-1">

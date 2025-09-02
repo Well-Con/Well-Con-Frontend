@@ -8,7 +8,7 @@ const useDoctor = () => {
   // Register doctor
   const registerDoctor = (payload, callback) =>
     runApi(
-      () => axios_instance.post('/doctor/create', payload),
+      () => axios_instance.post('/v1/signup', payload),
       'Failed to register doctor. Please try again',
       callback,
     );

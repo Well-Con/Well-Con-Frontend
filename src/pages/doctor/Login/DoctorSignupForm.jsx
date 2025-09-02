@@ -5,11 +5,19 @@ import {
   FaGithub,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const DoctorSignupForm = ({ formData, handleChange, handleSignup, doctorLoading }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+
+    console.log("request aai")
+    navigate('/doctorregistration', { state: { email: formData.email, password: formData.password } }); // Navigate to the '/about' route defined in your React Router setup
+  };
   return (
     <div className="form-container sign-up">
-      <form onSubmit={handleSignup}>
+      <form >
         <h1>Create Account</h1>
         <div className="social-icons">
           <a href="#" className="icon"><FaGooglePlusG /></a>
@@ -22,7 +30,7 @@ const DoctorSignupForm = ({ formData, handleChange, handleSignup, doctorLoading 
         <input type="password" placeholder="Password" name="password" value={formData.password} onChange={handleChange} />
        
 
-        <button type="submit" disabled={doctorLoading}>
+        <button type="submit" onClick={handleClick} disabled={doctorLoading}>
           {doctorLoading ? "Signing up..." : "Sign Up"}
         </button>
         <a href="/loginpatient">Signup as Patient</a>
@@ -30,5 +38,4 @@ const DoctorSignupForm = ({ formData, handleChange, handleSignup, doctorLoading 
     </div>
   );
 };
-
 export default DoctorSignupForm;

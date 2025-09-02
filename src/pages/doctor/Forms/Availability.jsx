@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import DoctorProgressBar from '../contains/progress';
+import React, { useState } from "react";
+import DoctorProgressBar from "../contains/progress";
 
 const Availability = () => {
   const [consultationTypes, setConsultationTypes] = useState([]);
   const [clinicDetails, setClinicDetails] = useState({
-    name: '',
-    address: '',
-    contact: '',
+    name: "",
+    address: "",
+    contact: "",
   });
 
   const handleConsultationChange = (type) => {
@@ -17,23 +17,30 @@ const Availability = () => {
     );
   };
 
-  const isInPersonSelected = consultationTypes.includes('In-person');
+  const isInPersonSelected = consultationTypes.includes("In-person");
 
   return (
     <div className="flex flex-col w-screen bg-gradient-to-r from-indigo-200 to-teal-200">
-      <DoctorProgressBar currentStep={2} /> {/* Step 2: Availability */}
+      <DoctorProgressBar currentStep={2} />
 
+      {/* Step 2: Availability */}
       <div className="w-full h-80vh p-8 bg-white rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-center mb-6">Availability & Timings</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">
+          Availability & Timings
+        </h2>
 
         <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
           {/* Days of Availability */}
           <div className="md:col-span-2">
-            <label className="block mb-2 text-gray-700 font-medium">Days Available</label>
+            <label className="block mb-2 text-gray-700 font-medium">
+              Days Available
+            </label>
             <div className="flex flex-wrap gap-4">
-              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
-                <label key={day} className="inline-flex items-center gap-2 text-gray-700">
+              {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
+                <label
+                  key={day}
+                  className="inline-flex items-center gap-2 text-gray-700"
+                >
                   <input type="checkbox" className="form-checkbox text-teal-600" />
                   {day}
                 </label>
@@ -43,10 +50,19 @@ const Availability = () => {
 
           {/* Time Slots */}
           <div className="md:col-span-2">
-            <label className="block mb-2 text-gray-700 font-medium">Available Time Slots</label>
+            <label className="block mb-2 text-gray-700 font-medium">
+              Available Time Slots
+            </label>
             <div className="flex flex-wrap gap-4">
-              {['Morning (8AM - 12PM)', 'Afternoon (12PM - 4PM)', 'Evening (4PM - 8PM)'].map((slot) => (
-                <label key={slot} className="inline-flex items-center gap-2 text-gray-700">
+              {[
+                "Morning (8AM - 12PM)",
+                "Afternoon (12PM - 4PM)",
+                "Evening (4PM - 8PM)",
+              ].map((slot) => (
+                <label
+                  key={slot}
+                  className="inline-flex items-center gap-2 text-gray-700"
+                >
                   <input type="checkbox" className="form-checkbox text-teal-600" />
                   {slot}
                 </label>
@@ -56,7 +72,9 @@ const Availability = () => {
 
           {/* Timezone */}
           <select className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <option value="" disabled selected>Select Time Zone</option>
+            <option value="" disabled selected>
+              Select Time Zone
+            </option>
             <option>IST (India Standard Time)</option>
             <option>GMT</option>
             <option>UTC</option>
@@ -66,10 +84,15 @@ const Availability = () => {
 
           {/* Type of Consultation */}
           <div className="md:col-span-2">
-            <label className="block mb-2 text-gray-700 font-medium">Type of Consultation</label>
+            <label className="block mb-2 text-gray-700 font-medium">
+              Type of Consultation
+            </label>
             <div className="flex flex-wrap gap-4">
-              {['Video', 'Chat', 'In-person'].map((type) => (
-                <label key={type} className="inline-flex items-center gap-2 text-gray-700">
+              {["Video", "Chat", "In-person"].map((type) => (
+                <label
+                  key={type}
+                  className="inline-flex items-center gap-2 text-gray-700"
+                >
                   <input
                     type="checkbox"
                     className="form-checkbox text-teal-600"
@@ -121,9 +144,9 @@ const Availability = () => {
               />
             </>
           )}
-
         </form>
 
+        {/* Submit Button */}
         <div className="flex justify-center m-6">
           <button className="bg-teal-600 text-white py-2 px-6 rounded-md font-semibold hover:bg-teal-700 transition duration-200 cursor-pointer">
             Submit

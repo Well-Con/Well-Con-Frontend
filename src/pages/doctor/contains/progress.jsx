@@ -21,11 +21,11 @@ const DoctorProgressBar = ({ currentStep }) => {
               <div className="flex items-center gap-2">
                 <div
                   className={`rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold
-                    ${isCompleted ? 'bg-purple-600 text-white' : isActive ? 'border-2 border-purple-600 text-purple-600' : 'bg-gray-200 text-gray-600'}`}
+                    ${isCompleted ? 'bg-blue-600 text-white' : isActive ? 'border-2 border-green-600 text-green-600' : 'bg-gray-200 text-gray-600'}`}
                 >
                   {index + 1}
                 </div>
-                <div className={`text-sm ${isActive ? 'text-purple-600 font-medium' : 'text-gray-500'}`}>
+                <div className={`text-sm ${isActive ? 'text-green-600 font-medium' : 'text-gray-500'}`}>
                   {step}
                 </div>
               </div>
