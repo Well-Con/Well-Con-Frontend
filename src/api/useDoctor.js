@@ -22,12 +22,12 @@ const useDoctor = () => {
     );
 
   // Get doctor profile (/doctor/me)
-  const getDoctorProfile = (callback) =>
-    runApi(
-      () => axios_instance.get('/doctor/me'),
-      'Failed to fetch doctor profile. Please try again',
-      callback,
-    );
+  const getDoctorProfile = (email, callback) =>
+  runApi(
+    () => axios_instance.get(`/getDoctorbyEmail?email=${encodeURIComponent(email)}`),
+    "Failed to fetch doctor profile. Please try again",
+    callback
+  );
 
   return {
     doctorLoading,

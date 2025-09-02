@@ -33,7 +33,8 @@ const Signindoctor = () => {
     e.preventDefault();
     loginDoctor({ email: formData.email, password: formData.password }, (res) => {
       console.log("Doctor logged in:", res);
-      // redirect after login
+      // redirect to dashboard
+      window.location.href = "/dashboard";
     });
   };
 

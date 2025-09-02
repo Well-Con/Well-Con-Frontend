@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import DoctorProgressBar from "../contains/progress";
 
-const Availability = () => {
+const Availability = ({ data, updateFormData, nextStep }) => {
   const [consultationTypes, setConsultationTypes] = useState([]);
   const [clinicDetails, setClinicDetails] = useState({
     name: "",
@@ -9,44 +9,57 @@ const Availability = () => {
     contact: "",
   });
 
+    const handleSubmit = (e) => {
+    e.preventDefault(); // called only when inputs are valid
+    if (timeSlots.length === 0) {
+    alert("Please select at least one time slot");
+    return;
+  }
+    if (consultationTypes.length === 0) {
+      alert("Please select at least one type of consultation");
+      return;
+    } 
+  
+    nextStep();
+  };
+
   const handleConsultationChange = (type) => {
-    setConsultationTypes((prev) =>
-      prev.includes(type)
-        ? prev.filter((t) => t !== type)
-        : [...prev, type]
-    );
+    const newTypes = consultationTypes.includes(type)
+      ? consultationTypes.filter((t) => t !== type)
+      : [...consultationTypes, type];
+
+    setConsultationTypes(newTypes);
+    updateFormData({ consultationTypes: newTypes });
+  };
+
+
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  const handleTimeSlotChange = (slot) => {
+    const newSlots = timeSlots.includes(slot)
+      ? timeSlots.filter((s) => s !== slot)
+      : [...timeSlots, slot];
+    setTimeSlots(newSlots);
+    updateFormData({ timeSlots: newSlots });   // ✅ update parent
+  };
+  const handleChange = (e) => {
+    updateFormData({ [e.target.name]: e.target.value });
   };
 
   const isInPersonSelected = consultationTypes.includes("In-person");
 
   return (
-    <div className="flex flex-col w-screen bg-gradient-to-r from-indigo-200 to-teal-200">
+    <div className="flex flex-col w-screen  min-h-screen py-[50px]">
       <DoctorProgressBar currentStep={2} />
 
       {/* Step 2: Availability */}
-      <div className="w-full h-80vh p-8 bg-white rounded-lg shadow-lg">
+      <div className="w-full h-80vh p-8 bg-white rounded-lg shadow-lg py-[100px]">
         <h2 className="text-3xl font-bold text-center mb-6">
           Availability & Timings
         </h2>
 
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Days of Availability */}
-          <div className="md:col-span-2">
-            <label className="block mb-2 text-gray-700 font-medium">
-              Days Available
-            </label>
-            <div className="flex flex-wrap gap-4">
-              {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
-                <label
-                  key={day}
-                  className="inline-flex items-center gap-2 text-gray-700"
-                >
-                  <input type="checkbox" className="form-checkbox text-teal-600" />
-                  {day}
-                </label>
-              ))}
-            </div>
-          </div>
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
+
 
           {/* Time Slots */}
           <div className="md:col-span-2">
@@ -63,24 +76,21 @@ const Availability = () => {
                   key={slot}
                   className="inline-flex items-center gap-2 text-gray-700"
                 >
-                  <input type="checkbox" className="form-checkbox text-teal-600" />
+                  <input
+                    
+                    type="checkbox"
+                    className="form-checkbox text-teal-600"
+                    checked={timeSlots.includes(slot)}
+                    onChange={() => handleTimeSlotChange(slot)}
+                  />
                   {slot}
+
                 </label>
               ))}
             </div>
           </div>
 
-          {/* Timezone */}
-          <select className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500">
-            <option value="" disabled selected>
-              Select Time Zone
-            </option>
-            <option>IST (India Standard Time)</option>
-            <option>GMT</option>
-            <option>UTC</option>
-            <option>PST</option>
-            <option>EST</option>
-          </select>
+
 
           {/* Type of Consultation */}
           <div className="md:col-span-2">
@@ -107,51 +117,70 @@ const Availability = () => {
 
           {/* Consultation Fee */}
           <input
+            required
             type="number"
             placeholder="Consultation Fee (₹)"
-            className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+            name="Fee"
+            value={data.Fee}
+            onChange={handleChange}
+            className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           />
 
           {/* Clinic/Hospital Details (Only if "In-person" selected) */}
           {isInPersonSelected && (
             <>
               <input
+                required
                 type="text"
                 placeholder="Clinic/Hospital Name"
+                name="Clinic Name"
                 value={clinicDetails.name}
-                onChange={(e) =>
-                  setClinicDetails({ ...clinicDetails, name: e.target.value })
-                }
-                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                onChange={(e) => {
+                  const updated = { ...clinicDetails, name: e.target.value };
+                  setClinicDetails(updated);
+                  updateFormData({ clinicDetails: updated });
+                }}
+                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
+                required
                 type="text"
                 placeholder="Clinic Address"
+                name="Clinic Address"
                 value={clinicDetails.address}
-                onChange={(e) =>
-                  setClinicDetails({ ...clinicDetails, address: e.target.value })
-                }
-                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                onChange={(e) => {
+                  const updated = { ...clinicDetails, name: e.target.value };
+                  setClinicDetails(updated);
+                  updateFormData({ clinicDetails: updated });
+                }}
+                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
+                required
                 type="text"
                 placeholder="Clinic Contact Number"
+                name="Clinic Contact Number"
                 value={clinicDetails.contact}
-                onChange={(e) =>
-                  setClinicDetails({ ...clinicDetails, contact: e.target.value })
-                }
-                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+               onChange={(e) => {
+                  const updated = { ...clinicDetails, name: e.target.value };
+                  setClinicDetails(updated);
+                  updateFormData({ clinicDetails: updated });
+                }}
+                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             </>
           )}
-        </form>
 
-        {/* Submit Button */}
-        <div className="flex justify-center m-6">
-          <button className="bg-teal-600 text-white py-2 px-6 rounded-md font-semibold hover:bg-teal-700 transition duration-200 cursor-pointer">
+
+          <div className="flex justify-center m-6 col-span-full">
+          <button className="bg-green-600 text-white py-2 px-6 rounded-md font-semibold hover:bg-green-700 transition duration-200 cursor-pointer" type="submit">
             Submit
           </button>
         </div>
+        </form>
+
+        
+        
       </div>
     </div>
   );

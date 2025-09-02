@@ -12,6 +12,14 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
   const [tags, setTags] = useState(data.specializations || []);
+    const handleSubmit = (e) => {
+    e.preventDefault(); // called only when inputs are valid
+    if (tags.length === 0) {
+    alert("Please add at least one specialization");
+    return;
+  }
+    nextStep();
+  };
 
   // suggestions list
   const suggestions = [
@@ -57,9 +65,10 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
         <h2 className="text-3xl font-bold text-center mb-6">
           Professional Details
         </h2>
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
           {/* Qualification */}
           <input
+            required
             type="text"
             name="qualification"
             value={data.qualification || ""}
@@ -72,6 +81,7 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
           <div className="p-2 border border-gray-300 rounded-md">
             <label className="block text-gray-700 mb-2">Specializations</label>
             <ReactTags
+              
               tags={tags}
               suggestions={suggestions}
               handleDelete={handleDelete}
@@ -93,6 +103,7 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
 
           {/* Years of Experience */}
           <input
+            required
             type="number"
             name="experience"
             value={data.experience || ""}
@@ -103,6 +114,7 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
 
           {/* Workplace */}
           <input
+            required
             type="text"
             name="workplace"
             value={data.workplace || ""}
@@ -113,6 +125,7 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
 
           {/* Registration Number */}
           <input
+            required
             type="text"
             name="registrationNumber"
             value={data.registrationNumber || ""}
@@ -120,17 +133,20 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
             placeholder="Registration Number issued by state medical council"
             className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           />
-        </form>
-
-        <div className="flex justify-center m-6">
-          <button
-            type="button"
-            onClick={nextStep}
+          {/* Centre this button */}
+          
+          <div className="flex justify-center m-6 col-span-full">
+            <button
+              type="submit"
+              
             className="bg-green-600 text-white py-2 px-6 rounded-md font-semibold hover:bg-green-700 transition duration-200 cursor-pointer"
           >
             Submit
           </button>
         </div>
+        </form>
+
+       
       </div>
     </div>
   );

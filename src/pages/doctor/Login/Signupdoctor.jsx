@@ -4,39 +4,50 @@ import ProfessionalDetails from "../Forms/Professional";
 import Availability from "../Forms/Availability";
 import Documentation from "../Forms/Documentation";
 import { useLocation } from "react-router-dom";
-
 import useDoctor from "../../../api/useDoctor";
 
 const Signupdoctor = () => {
   const location = useLocation();
-  const { email, password } = location.state || {};
-  const [step, setStep] = useState(0); // 0=personal, 1=professional, 2=availability
+  const { email = "", password = "" } = location.state || {};
+  const [step, setStep] = useState(0);
   const { registerDoctor, doctorLoading } = useDoctor();
 
-  // State for all form data
+  // ✅ form data includes everything we collect
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email,
+    password,
     name: "",
     age: "",
-    phoneNo: "",
-    address: "",
-    city: "",
-    experties: [],
-    education: [],
     gender: "",
-    
+    phoneNo: "",
+    city: "",
+    state: "",
+    qualification: "",
+    specializations: [],
+    experience: "",
+    workplace: "",
+    registrationNumber: "",
+    consultationTypes: [],
+    timeSlots: [],
+    Fee: "",
+    clinicDetails: {
+      name: "",
+      address: "",
+      contact: "",
+    },
   });
 
-  // Update handler for child forms
+  // merge child updates into parent state
   const updateFormData = (newData) => {
     setFormData((prev) => ({ ...prev, ...newData }));
   };
 
   const handleSubmit = () => {
+    console.log("Submitting doctor data:", formData);
     registerDoctor(formData, (res) => {
       console.log("Doctor registered:", res);
-      // maybe redirect here
+      //redirect to dashboard page
+      window.location.href = "/dashboard";
     });
   };
 
@@ -46,7 +57,7 @@ const Signupdoctor = () => {
         <PersonalDetails
           data={formData}
           updateFormData={updateFormData}
-          nextStep={console.log("Moving to professional details") || (() => setStep(1))}
+          nextStep={() => setStep(1)}
         />
       )}
       {step === 1 && (
@@ -61,7 +72,13 @@ const Signupdoctor = () => {
         <Availability
           data={formData}
           updateFormData={updateFormData}
-          prevStep={() => setStep(1)}
+          nextStep={() => setStep(3)}
+        />
+      )}
+      {step === 3 && (
+        <Documentation
+          data={formData}
+          updateFormData={updateFormData}
           submit={handleSubmit}
           loading={doctorLoading}
         />
