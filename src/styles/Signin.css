@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap'); */
 /* 
 *{
     
@@ -14,6 +14,7 @@ body{
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    font-family: 'Red Hat Display', sans-serif;
 }
 
 .container{
@@ -28,7 +29,7 @@ body{
 }
 
 .container p{
-    font-size: 14px;
+    /* font-size: 14px; */
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 20px 0;
@@ -40,15 +41,15 @@ body{
 
 .container a{
     color: #333;
-    font-size: 13px;
+    /* font-size: 1px; */
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
 .container button{
-    background-color: #74b49b;
+    background-color: #2ecc71;
     color: #fff;
-    font-size: 12px;
+    /* font-size: 12px; */
     padding: 10px 45px;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -79,7 +80,7 @@ body{
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
-    font-size: 13px;
+    /* font-size: 13px; */
     border-radius: 8px;
     width: 100%;
     outline: none;
@@ -160,9 +161,9 @@ body{
 }
 
 .toggle{
-    background-color: #74b49b;
+    /* background-color: #74b49b; */
     height: 100%;
-    background: linear-gradient(to right, #8dddbe, #74b49b);
+    /* background: linear-gradient(to right, #8dddbe, #74b49b); */
     color: #fff;
     position: relative;
     left: -100%;
@@ -206,4 +207,20 @@ body{
 
 .container.active .toggle-right{
     transform: translateX(200%);
+}
+
+.sign-up a{
+    transition: transform 0.3s ease;
+}
+
+.sign-up a:hover{
+    transform: scale(1.1);
+}
+
+.sign-up button{
+    transition: transform 0.3s ease;
+}
+
+.sign-up button:hover{
+    transform: scale(1.1);
 }

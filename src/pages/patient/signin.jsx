@@ -60,7 +60,7 @@ const SigninPatient = () => {
               Sign In
             </button>
           </div>
-          <div className="toggle-panel toggle-right">
+          <div className="toggle-panel toggle-right rightwala">
             <h1>Hello, Friend!</h1>
             <p>Register with your personal details to use all of site features</p>
             <button  className="hidd" onClick={() => setIsActive(true)}>

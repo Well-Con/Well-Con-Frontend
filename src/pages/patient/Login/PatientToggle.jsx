@@ -1,20 +1,19 @@
 import React from "react";
-import '../../../styles/doctorlogin.css'
+import '../../../styles/patientlogin.css';
 
-const DoctorToggle = ({ setIsActive }) => {
+const PatientToggle = ({ setIsActive }) => {
   return (
     <div className="toggle-container">
       <div className="toggle">
         <div className="toggle-panel toggle-left">
-          
           <h1 id="welcome">Welcome Back!</h1>
-          <p>Enter your personal details to use all of site features</p>
+          <p>Enter your personal details to use all site features</p>
           <button className="hidd" onClick={() => setIsActive(false)}>
             Sign In
           </button>
         </div>
         <div className="toggle-panel toggle-right rightwala">
-          <h1>Hello, Doctor!</h1>
+          <h1>Hello, Patient!</h1>
           <p>Register with your personal details</p>
           <button className="hidd" onClick={() => setIsActive(true)}>
             Sign Up
@@ -25,4 +24,4 @@ const DoctorToggle = ({ setIsActive }) => {
   );
 };
 
-export default DoctorToggle;
+export default PatientToggle;
