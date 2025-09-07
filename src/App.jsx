@@ -4,19 +4,26 @@ import './App.css';
 import Layout from './Layouts/Layout';
 import Dashboard from './pages/doctor/Dashboard/Dashboard.jsx';
 import Message from './pages/doctor/Message/Message.jsx';
-import Connect from './pages/doctor/Connect';
+
 import History from './pages/doctor/History/History.jsx';
-import Appointment from './pages/doctor/Appointment';
+import Appointment from './pages/doctor/MyAppointments/Appointments.jsx';
 import Signindoctor from './pages/doctor/Login/Signindoctor.jsx';
  
-import Chat from './pages/doctor/Chat.jsx'
+
 import PersonalDetails from './pages/doctor/Forms/Personal.jsx';
 import ProfessionalDetails from './pages/doctor/Forms/Professional.jsx';
 import Availability from './pages/doctor/Forms/Availability.jsx';
 import Documentation from './pages/doctor/Forms/Documentation.jsx';
 import Signupdoctor from './pages/doctor/Login/Signupdoctor.jsx';
 import PatientLogin from './pages/patient/Login/SigninPatient.jsx';
-import Signuppatient from './pages/patient/Login/Signuppatient.jsx';    
+import Signuppatient from './pages/patient/Login/Signuppatient.jsx';
+{/* Patient k routes */}    
+import   PatientHome from './pages/patient/Home/Home.jsx';
+import About from './pages/patient/About/About.jsx';
+import Contact from './pages/patient/Contact/Contact.jsx';
+import PatientAppointments from './pages/patient/MyAppointments/MyAppointments.jsx';
+import PatientProfile from './pages/patient/MyProfile/MyProfile.jsx';
+import SearchDoctor from './pages/patient/SearchDoctor/SearchDoctor.jsx';
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -35,19 +42,31 @@ function App() {
           <Route path='/loginpatient' element={<PatientLogin />} />
           <Route path='/registerpatient' element={<Signuppatient />} />
 
+
+          <Route path="/patient/home" element={<PatientHome />} />
+          <Route path="/patient/about" element={<About />} />
+          <Route path="/patient/contact" element={<Contact />} />
+          <Route path="/patient/appointments" element={<PatientAppointments />} />
+          <Route path="/patient/profile" element={<PatientProfile />} />
+          <Route path="/patient/searchdoctor" element={<SearchDoctor />} />
+
+
        <Route element={<Layout />}>
        
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path="/message" element={<Message/>} />
-        <Route path="/connect" element={<Connect/>} />
-        <Route path="/history" element={<History/>} />
         <Route path="/appointments" element={<Appointment/>} />
-        <Route path="/chat/:id" element={<Chat />} />
+        <Route path="/history" element={<History/>} />
 
-       
-    
+ 
         
+        
+        
+
         </Route>
+        
+
+
         
 
 

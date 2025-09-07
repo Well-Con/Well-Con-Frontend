@@ -1,5 +1,5 @@
 import React from 'react';
-import PatientProgressBar from '../contains/progress';
+
 
 const PersonalPatientDetails = ({ data, updateFormData, nextStep }) => {
   const handleChange = (e) => {
