@@ -7,6 +7,7 @@ import PatientSigninForm from "./PatientSigninForm";
 import PatientToggle from "./PatientToggle";
 
 const SigninPatient = () => {
+  
   const [isActive, setIsActive] = useState(false);
   const { registerPatient, loginPatient, patientLoading } = usePatient();
 
@@ -37,6 +38,7 @@ const SigninPatient = () => {
   };
 
   return (
+    <div className="signin-wrapper">
     <div className={`container ${isActive ? "active" : ""}`} id="container">
       <PatientSignupForm
         formData={formData}
@@ -51,6 +53,7 @@ const SigninPatient = () => {
         patientLoading={patientLoading}
       />
       <PatientToggle setIsActive={setIsActive} />
+    </div>
     </div>
   );
 };

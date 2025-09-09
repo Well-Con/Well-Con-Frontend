@@ -39,6 +39,7 @@ const Signindoctor = () => {
   };
 
   return (
+    <div className="signin-wrapper">
     <div className={`container ${isActive ? "active" : ""}`} id="container">
       <DoctorSignupForm
         formData={formData}
@@ -53,6 +54,7 @@ const Signindoctor = () => {
         doctorLoading={doctorLoading}
       />
       <DoctorToggle setIsActive={setIsActive} />
+    </div>
     </div>
   );
 };
