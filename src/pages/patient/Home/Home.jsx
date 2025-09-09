@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from './Header'
 
 const  PatientHome = () => {
   return (
-    <div>This is home</div>
+    <div>
+      <Header/>
+    </div>
   )
 }
 
