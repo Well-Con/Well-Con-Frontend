@@ -1,3 +1,4 @@
+import PatientFooter from "../components/PatientFooter.jsx";
 import PatientNavbar from "../components/PatientNavbar.jsx";
 import { Outlet } from "react-router-dom";
 
@@ -11,6 +12,7 @@ function PatientLayout() {
       <main>
         <Outlet />
       </main>
+      <PatientFooter/>
     </div>
   );
 }
