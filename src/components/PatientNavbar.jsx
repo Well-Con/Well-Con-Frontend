@@ -31,7 +31,7 @@ const PatientNavbar=()=>{
             </li>
           
           </NavLink>
-          <NavLink to={"/patient/searchdoctor/All"}>
+          <NavLink to={"/patient/searchdoctor"}>
             <li className="py-1">
               All DOCTORS
               <hr className=' outline-none h-0.5 bg-primarycolor w-3/5 m-auto hidden' />
