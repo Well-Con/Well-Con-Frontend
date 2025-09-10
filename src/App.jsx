@@ -22,7 +22,7 @@ import PatientAppointments from './pages/patient/MyAppointments/MyAppointments.j
 import PatientProfile from './pages/patient/MyProfile/MyProfile.jsx';
 import SearchDoctor from './pages/patient/SearchDoctor/SearchDoctor.jsx';
 import ConformAppointment from './pages/patient/Appointment/Appointment.jsx';
-import PatientLayout from './Layouts/PatientNavbar.jsx';
+import PatientLayout from './Layouts/PatientLayout.jsx';
 
 import { Routes, Route } from 'react-router-dom';
 
