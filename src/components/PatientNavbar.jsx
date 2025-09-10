@@ -14,7 +14,7 @@ const PatientNavbar=()=>{
     return (
       
       <div className='flex item-centre justify-between p-4 mb-5 border-b border-gray-400'>
-        <div className='flex flex-row align-start items-centre  cursor-pointer'>
+        <div onClick={()=>navigate('/patient/home')} className='flex flex-row align-start items-centre  cursor-pointer'>
           <p>
             <i className="fa-brands fa-slack fa-lg text-green-500 mt-5"></i>
           </p>

@@ -6,7 +6,7 @@ const PatientFooter = () => {
       <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14my-10 mt-40 text-sm pb-10'>
         {/* Footer left part */}
         <div>
-        <div className='flex flex-row align-start items-centre mb-5 w-40 cursor-pointer'>
+        <div  className='flex flex-row align-start items-centre mb-5 w-40 '>
           <p>
             <i className="fa-brands fa-slack fa-lg text-green-500 mt-5"></i>
           </p>
