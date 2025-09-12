@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../context/AppContext';
 import { useContext } from 'react';
 import { assets } from '../../../assets/assets';
+import RelatedDoctors from './RelatedDoctors';
 
 function ConformAppointment() {
   const {docId}= useParams();
@@ -133,8 +134,13 @@ function ConformAppointment() {
                 ))
           }
         </div>
+        <button className='bg-green-500 text-white text-sm font-light px-14 py-3 rounded-full my-6 cursor-pointer'>Book Appointment</button>
+        
 
       </div>
+
+      {/* ---------Listing Related Doctors----------- */}
+      <RelatedDoctors docid={docId} speciality={docInfo.speciality} />
 
     </div>
   )
