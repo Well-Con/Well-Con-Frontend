@@ -35,7 +35,7 @@ function SearchDoctor() {
         </div>
         <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 gap-y-6 pt-5 px-3 sm:px-0">
           {filterDoc.map((item,index)=>(
-             <div onClick={()=>navigate(`/patient/appointment/${item._id}`)} key={index} className='border border-green-500 rounded-xl max-w-441 overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' >
+             <div onClick={()=>{navigate(`/patient/appointment/${item._id}`); scrollTo(0,0)}} key={index} className='border border-green-500 rounded-xl max-w-441 overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' >
                 <img className='bg-green-50 ' src={item.image} alt="" />
                 <div className='p-4'>
                     <div className='flex items-centre gap-2 text-sm text-centre text-green-500 '>
