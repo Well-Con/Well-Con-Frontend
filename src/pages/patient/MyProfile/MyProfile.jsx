@@ -20,7 +20,7 @@ function PatientProfile() {
     gender: 'Male',
 
   })
-  const [isEdit, setIsEdit] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
 
 
   return (
@@ -29,34 +29,34 @@ function PatientProfile() {
       <img className='w-36  rounded' src={assets.profile_pic} alt="" />
       {
         isEdit ?
-          <input className='bg-gray-50 text-3xl font-medium max-w-60 mt-4' type="text" value={userData.name} onChange={(e) => setUserData(prev => ({ ...prev, name: e.target.value }))} /> :
+          <input className='bg-gray-50 text-3xl font-medium max-w-60 mt-4 border border-gray-400 rounded' type="text" value={userData.name} onChange={(e) => setUserData(prev => ({ ...prev, name: e.target.value }))} /> :
           <p className='font-medium text-3xl  text-neutral-800 mt-4 '>{userData.name}</p>
       }
-      <div>
+      <div className='flex flex-col gap-4 text-neutral-700'>
         <hr  className='bg-zinc-400 h-[1px] border-none'/>
-        <p>CONTACT INFORMATION</p>
-        <div>
-          <p>Email id:</p>
-          <p>{userData.email}</p>
+        <p className='text-neutral-500 underline mt-3'>CONTACT INFORMATION</p>
+        <div className='flex flex-row gap-5'>
+          <p className='font-medium'>Email id: </p>
+          <p className='text-green-500'>{userData.email}</p>
         </div>
-        <div>
-          <p>Phone:</p>
+        <div className='flex flex-row gap-7'>
+          <p  className='font-medium'>Phone:</p>
           {
             isEdit ?
-              <input type="text" value={userData.phone} onChange={(e) => setUserData(prev => ({ ...prev, phone: e.target.value }))} /> :
-              <p>{userData.phone}</p>
+              <input required className='border border-gray-400 rounded' type="telephone" value={userData.phone} onChange={(e) => setUserData(prev => ({ ...prev, phone: e.target.value }))} /> :
+              <p className='bg-gray-50'>{userData.phone}</p>
           }
         </div>
 
-        <div>
-          <p>Address:</p>
+        <div className='flex flex-row gap-5'>
+          <p className='font-medium'>Address:</p>
           {
             isEdit ?
-              <div>
-                <input type="text" value={userData.address.locality} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, locality: e.target.value } }))} />
-                <input type="text" value={userData.address.city} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, city: e.target.value } }))} />
-                <input type="text" value={userData.address.state} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, state: e.target.value } }))} />
-                <input type="text" value={userData.address.country} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, country: e.target.value } }))} />
+              <div className='flex flex-col gap-1'>
+                <input className='border border-gray-400 rounded' type="text" value={userData.address.locality} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, locality: e.target.value } }))} />
+                <input className='border border-gray-400 rounded' type="text" value={userData.address.city} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, city: e.target.value } }))} />
+                <input className='border border-gray-400 rounded' type="text" value={userData.address.state} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, state: e.target.value } }))} />
+                <input className='border border-gray-400 rounded' type="text" value={userData.address.country} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, country: e.target.value } }))} />
 
               </div> :
               <div>
@@ -70,13 +70,13 @@ function PatientProfile() {
           }
         </div>
 
-        <p>BASIC INFORMATION</p>
+        <p className='text-neutral-500 underline mt-3'>BASIC INFORMATION</p>
 
-        <div>
-          <p>Gender:</p>
+        <div className='flex flex-row gap-5'>
+          <p className='font-medium'>Gender:</p>
           {
             isEdit ?
-              <select onChange={(e) => setUserData(prev => ({ ...prev, gender: e.target.value }))} value={userData.gender}>
+              <select className='border border-gray-400 rounded' onChange={(e) => setUserData(prev => ({ ...prev, gender: e.target.value }))} value={userData.gender}>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select> :
@@ -85,23 +85,25 @@ function PatientProfile() {
 
         </div>
 
-        <div>
-          <p>Age:</p>
+        <div className='flex flex-row gap-10'>
+          <p className='font-medium'>Age:</p>
           {
             isEdit ?
-              <input type="telephone" value={userData.age} onChange={(e) => setUserData(prev => ({ ...prev, age: e.target.value }))} /> :
-              <p>{userData.age}</p>
+              <input className='border border-gray-400 rounded' type="telephone" value={userData.age} onChange={(e) => setUserData(prev => ({ ...prev, age: e.target.value }))} /> :
+              <p>{userData.age} years</p>
           }
          
         </div>
 
       </div>
 
-      {
+     <div className='mt-10'>
+       {
         isEdit ?
-        <button onClick={()=>setIsEdit(false)}>Save information</button> :
-        <button onClick={()=>setIsEdit(true)}>Edit</button>
+        <button className='border border-green-500  px-8 py-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white transition-all ' onClick={()=>setIsEdit(false)}>Save information</button> :
+        <button className='border border-green-500  px-8 py-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white transition-all ' onClick={()=>setIsEdit(true)}>Edit</button>
       }
+     </div>
 
     </div>
   )
