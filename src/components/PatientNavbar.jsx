@@ -51,12 +51,7 @@ const PatientNavbar=()=>{
             </li>
             
           </NavLink>
-          <NavLink to={"/patient/contact"}>
-            <li className="py-1">
-              CONTACT
-              <hr className='outline-none h-0.5 bg-primarycolor w-3/5 m-auto hidden' />
-            </li>
-          </NavLink>
+          
           
         </ul>
         <div className='flex items-centre gap-4'>
@@ -74,7 +69,7 @@ const PatientNavbar=()=>{
             </div>
 
           </div>
-          :<button className='bg-green-500 text-white py-3 px-8 rounded-full '>Create account</button>
+          :<button onClick={()=>{navigate('/patient/login')}} className='bg-green-500 text-white py-3 px-8 rounded-full cursor-pointer hover:scale-105 transition-all'>Create account</button>
           }
         </div>
       </div>

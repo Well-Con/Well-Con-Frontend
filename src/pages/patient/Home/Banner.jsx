@@ -12,7 +12,7 @@ const Banner = () => {
                 <p>Book Appointment</p>
                 <p className='mt-4'>With 100+ Trusted Doctors</p>
             </div>
-            <button onClick={()=>{navigate('/loginpatient')}} className='bg-white text-sm sm:text-base text-gray-600 px-8 py-3 rounded-full mt-6 hover:scale-105 transition-all cursor-pointer'>Create account</button>
+            <button onClick={()=>{navigate('/patient/login')}} className='bg-white text-sm sm:text-base text-gray-600 px-8 py-3 rounded-full mt-6 hover:scale-105 transition-all cursor-pointer'>Create account</button>
 
         </div>
         {/* Banner right section */}

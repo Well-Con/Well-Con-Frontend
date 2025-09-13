@@ -12,7 +12,8 @@ import ProfessionalDetails from './pages/doctor/Forms/Professional.jsx';
 import Availability from './pages/doctor/Forms/Availability.jsx';
 import Documentation from './pages/doctor/Forms/Documentation.jsx';
 import Signupdoctor from './pages/doctor/Login/Signupdoctor.jsx';
-import PatientLogin from './pages/patient/Login/SigninPatient.jsx';
+// import PatientLogin from './pages/patient/Login/SigninPatient.jsx';
+import PatientLogin from './pages/patient/Patient_Login/Login.jsx';
 import Signuppatient from './pages/patient/Login/Signuppatient.jsx';
 
 import PatientHome from './pages/patient/Home/Home.jsx';
@@ -40,7 +41,7 @@ function App() {
       <Route path="/registrationdoctor3" element={<Documentation />} />
 
       {/* Patient auth */}
-      <Route path="/loginpatient" element={<PatientLogin />} />
+      <Route path="patient/login" element={<PatientLogin />} />
       <Route path="/registerpatient" element={<Signuppatient />} />
 
       {/* Patient pages with layout of navbar */}

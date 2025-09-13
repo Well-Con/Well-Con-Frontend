@@ -38,7 +38,10 @@ const SigninPatient = () => {
   };
 
   return (
+    <div>
+      <p>Signin as Doctor</p>
     <div className="signin-wrapper">
+      <p>Signin as Doctor</p>
     <div className={`container ${isActive ? "active" : ""}`} id="container">
       <PatientSignupForm
         formData={formData}
@@ -52,8 +55,14 @@ const SigninPatient = () => {
         handleSignin={handleSignin}
         patientLoading={patientLoading}
       />
+      <p>Signin as Doctor</p>
       <PatientToggle setIsActive={setIsActive} />
+      
     </div>
+    <p>Signin as Doctor</p>
+    </div>
+
+    <p>Signin as Doctor</p>
     </div>
   );
 };
