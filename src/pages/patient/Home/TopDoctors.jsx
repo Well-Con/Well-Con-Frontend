@@ -5,15 +5,13 @@ import useDoctor from "../../../api/useDoctor";
 import { useState ,useEffect } from 'react';
 const TopDoctors = () => {
     const navigate = useNavigate();
-    // const {doctors}= useContext(AppContext)
     const { getAllDoctors, doctorLoading } = useDoctor();
     const [doctors, setDoctors] = useState([]);
 
     useEffect(() => {
-    // Fetch doctors when component mounts
     getAllDoctors((res) => {
       if (res?.success) {
-        setDoctors(res.data);   // adjust if your backend sends doctors in a different key
+        setDoctors(res.data);   
       }
     });
   }, []);
