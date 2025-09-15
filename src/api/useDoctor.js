@@ -29,11 +29,28 @@ const useDoctor = () => {
     callback
   );
 
+  const getAllDoctors = (callback) =>
+    runApi(
+      () => axios_instance.get('/getAllDoctors'),
+      "Failed to fetch doctors. Please try again",
+      callback
+    );
+
+
+  const getDoctorsBySpeciality = (speciality, callback) =>
+    runApi(
+      () => axios_instance.get(`/getDoctorbySpecialization?speciality=${encodeURIComponent(speciality)}`),
+      "Failed to fetch doctors by speciality. Please try again",
+      callback
+    );  
+
   return {
     doctorLoading,
     registerDoctor,
     loginDoctor,
     getDoctorProfile,
+    getAllDoctors,
+    getDoctorsBySpeciality,
   };
 };
 

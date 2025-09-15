@@ -47,7 +47,6 @@ const DoctorSignupForm = ({ formData, handleChange, handleSignup, doctorLoading 
         <button type="submit"  disabled={doctorLoading}>
           {doctorLoading ? "Signing up..." : "Sign Up"}
         </button>
-        <a href="/loginpatient">Signup as Patient</a>
       </form>
     </div>
   );

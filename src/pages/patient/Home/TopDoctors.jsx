@@ -1,10 +1,22 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../context/AppContext';
-
+import useDoctor from "../../../api/useDoctor";
+import { useState ,useEffect } from 'react';
 const TopDoctors = () => {
     const navigate = useNavigate();
-    const {doctors}= useContext(AppContext)
+    // const {doctors}= useContext(AppContext)
+    const { getAllDoctors, doctorLoading } = useDoctor();
+    const [doctors, setDoctors] = useState([]);
+
+    useEffect(() => {
+    // Fetch doctors when component mounts
+    getAllDoctors((res) => {
+      if (res?.success) {
+        setDoctors(res.data);   // adjust if your backend sends doctors in a different key
+      }
+    });
+  }, []);
   return (
     <div className='flex flex-col items-center gap-4 my-16 text-gray-900  md:mx-10' >
         <h1 className='text-3xl font-medium'>Top Doctors to Book</h1>
@@ -24,7 +36,7 @@ const TopDoctors = () => {
 
             ))}
         </div>
-        <button onClick={()=>{navigate('/patient/searchdoctor/'); scrollTo(0,0)}} className='bg-green-500 text-gray-600 px-12 py-3 rounded-full mt-10  cursor-pointer hover:scale-105 transition-all'>More</button>
+        <button onClick={()=>{navigate('/patient/searchdoctor/'); scrollTo(0,0)}} className='text-white bg-green-500 text-gray-600 px-12 py-3 rounded-full mt-10  cursor-pointer hover:scale-105 transition-all'>More</button>
     </div>
   )
 }

@@ -24,6 +24,7 @@ import PatientProfile from './pages/patient/MyProfile/MyProfile.jsx';
 import SearchDoctor from './pages/patient/SearchDoctor/SearchDoctor.jsx';
 import ConformAppointment from './pages/patient/Appointment/Appointment.jsx';
 import PatientLayout from './Layouts/PatientLayout.jsx';
+import PatientChat from './pages/patient/Chat/chat.jsx';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -55,6 +56,8 @@ function App() {
           <Route path="/patient/searchdoctor/:speciality" element={<SearchDoctor />} />
           <Route path="/patient/searchdoctor" element={<SearchDoctor />} />
           <Route path="/patient/appointment/:docId" element={<ConformAppointment />} />
+          <Route path="/patient/chat/:docId" element={<PatientChat/>}/>
+
         </Route>
 
       
