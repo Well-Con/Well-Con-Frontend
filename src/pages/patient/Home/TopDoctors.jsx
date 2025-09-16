@@ -2,25 +2,35 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../context/AppContext';
 import useDoctor from "../../../api/useDoctor";
+import useUser from '../../../api/useUser';
 import { useState, useEffect } from 'react';
+const { getUserById, userLoading } = useUser();
+
 const TopDoctors = () => {
   const navigate = useNavigate();
   const { getAllDoctors, doctorLoading } = useDoctor();
   const [doctors, setDoctors] = useState([]);
+  const [users,setusers]= useState([]);
 
 
   useEffect(() => {
-    1
+    
     getAllDoctors((res) => {
       if (res?.success) {
         setDoctors(res.data); // <-- if API actually has `data`
       } else {
-        setDoctors(res); // <-- if API directly gives array
+        setDoctors(res);
+        getUserById((doctors.id),(res)=>{
+      console.log(res.name);
+
+    }) // <-- if API directly gives array
       }
 
       // console.log(doctors);
 
     });
+
+    
   }, []);
   useEffect(() => {
     console.log("Doctors updated:", doctors);
