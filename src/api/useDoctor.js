@@ -31,7 +31,7 @@ const useDoctor = () => {
 
   const getAllDoctors = (callback) =>
     runApi(
-      () => axios_instance.get('/getAllDoctors'),
+      () => axios_instance.get('/doctor/getAllDoctors'),
       "Failed to fetch doctors. Please try again",
       callback
     );
