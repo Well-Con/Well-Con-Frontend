@@ -49,11 +49,12 @@ const PatientLogin = () => {
           console.log("Signup successful:", data);
            localStorage.setItem("user", JSON.stringify(data.user));
           localStorage.setItem("token", data.token);
+          toast.success("Signup successful!");
 
           setState("Login");
           navigate('/patient/home');
         } else {
-          console.error("Signup failed");
+           toast.error("Signup failed. Try again.");
         }
       });
     } else {
@@ -61,10 +62,13 @@ const PatientLogin = () => {
         setLoading(false);
         if (success) {
           console.log("Login successful:", data);
-          alert("Login successful!");
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+           toast.success("Login successful!");
+          navigate("/patient/home");
           // You can save token in localStorage or context here
         } else {
-          console.error("Login failed ");
+          toast.error("Invalid email or password");
         }
       });
     }

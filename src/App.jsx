@@ -27,9 +27,11 @@ import PatientLayout from './Layouts/PatientLayout.jsx';
 import PatientChat from './pages/patient/Chat/chat.jsx';
 
 import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
+    <>
     <Routes>
       {/* Doctor auth */}
       <Route path="/doctorregistration" element={<Signupdoctor />} />
@@ -71,6 +73,8 @@ function App() {
         <Route path="/history" element={<History />} />
       </Route>
     </Routes>
+    <Toaster position="top-center" reverseOrder={fasle} />
+    </>
   );
 }
 
