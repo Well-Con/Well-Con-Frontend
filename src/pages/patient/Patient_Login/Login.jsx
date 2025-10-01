@@ -1,6 +1,8 @@
 import React from 'react'
 import usePatient from '../../../api/usePatient'
 import { useNavigate } from 'react-router-dom';
+import {useState} from 'react'
+import toast from "react-hot-toast";
 
 const PatientLogin = () => {
   const navigate = useNavigate();
@@ -12,26 +14,25 @@ const PatientLogin = () => {
   const [gender, setGender] = React.useState("");
   const [loading, setLoading] = React.useState(false);
   const { registerPatient, loginPatient } = usePatient();
+  const [error, setError] = useState("");
   const validateForm = () => {
     if (state === "Sign-Up") {
       if (phoneNo.length !== 10) {
-        ("Phone number must be exactly 10 digits");
+         toast.error("Phone number must be exactly 10 digits");
         return false;
       }
       if (password.length < 6) {
-        setError("Password must be at least 6 characters long");
+        toast.error("Password must be at least 6 characters long");
         return false;
       }
-      if (!gender) {
-        setError("Please select a gender");
-        return false;
-      }
+    
     }
-    setError(""); // clear error if everything is fine
+    
     return true;
   };
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    console.log(name )
      if (!validateForm()) {
       return
      } // call validation function
@@ -125,7 +126,7 @@ const PatientLogin = () => {
             <p>Password:</p>
             <input className='border border-zinc-300 rounded p-2 w-full mt-1' type="text" onChange={(e) => setPassword(e.target.value)} value={password} required />
           </div>
-          <button className='w-full bg-green-500 text-white cursor-pointer p-2 rounded-md text-base'>{state === 'Sign-Up' ? "Create Account" : "Login"}</button>
+          <button type="submit" className='w-full bg-green-500 text-white cursor-pointer p-2 rounded-md text-base'>{state === 'Sign-Up' ? "Create Account" : "Login"}</button>
           {state === 'Sign-Up' ?
             <p>Already have an account? <span className='text-green-500 cursor-pointer underline' onClick={() => setState('Login')}>Login here</span></p> :
             <p>Create an new account? <span className='text-green-500 cursor-pointer underline' onClick={() => setState('Sign-Up')}>Click here</span></p>}
