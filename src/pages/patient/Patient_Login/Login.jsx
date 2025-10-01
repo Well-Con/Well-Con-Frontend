@@ -10,6 +10,7 @@ const PatientLogin = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
+  const [age, setage] = React.useState("");
   const [phoneNo, setPhoneNo] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [loading, setLoading] = React.useState(false);
@@ -37,9 +38,10 @@ const PatientLogin = () => {
       return
      } // call validation function
     setLoading(true);
+    
     const payload =
       state === "Sign-Up"
-        ? { name, email, password, phoneNo, gender }
+        ? { name, email, password, phoneNo, gender,age: Number(age) , role: "PATIENT" }
         : { email, password };
 
     if (state === "Sign-Up") {
@@ -47,8 +49,8 @@ const PatientLogin = () => {
         setLoading(false);
         if (success) {
           console.log("Signup successful:", data);
-           localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("token", data.token);
+           localStorage.setItem("user", JSON.stringify(data));
+          // localStorage.setItem("token", data.token);
           toast.success("Signup successful!");
 
           setState("Login");
@@ -93,6 +95,7 @@ const PatientLogin = () => {
                 />
               </div>
 
+
               {/* 🔹 Phone Number field */}
               <div className="w-full">
                 <p>Phone Number:</p>
@@ -104,7 +107,17 @@ const PatientLogin = () => {
                   required
                 />
               </div>
-
+              {/* 🔹 Age field */}
+              <div className="w-full">
+                <p>Age:</p>
+                <input
+                  className="border border-zinc-300 rounded p-2 w-full mt-1"
+                  type="number"
+                  onChange={(e) => setage(e.target.value)}
+                  value={age}
+                  required
+                />
+              </div>
               {/* 🔹 Gender Dropdown */}
               <div className="w-full">
                 <p>Gender:</p>
@@ -128,7 +141,7 @@ const PatientLogin = () => {
           </div>
           <div className='w-full'>
             <p>Password:</p>
-            <input className='border border-zinc-300 rounded p-2 w-full mt-1' type="text" onChange={(e) => setPassword(e.target.value)} value={password} required />
+            <input className='border border-zinc-300 rounded p-2 w-full mt-1' type="password" onChange={(e) => setPassword(e.target.value)} value={password} required />
           </div>
           <button type="submit" className='w-full bg-green-500 text-white cursor-pointer p-2 rounded-md text-base'>{state === 'Sign-Up' ? "Create Account" : "Login"}</button>
           {state === 'Sign-Up' ?

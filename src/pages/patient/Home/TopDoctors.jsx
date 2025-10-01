@@ -38,7 +38,7 @@ const TopDoctors = () => {
       <h1 className='text-3xl font-medium'>Top Doctors to Book</h1>
       <p className='sm:w-1/3 text-centre text-sm'>Simply browse through our extensive list of trusted doctors</p>
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 gap-y-6 pt-5 px-3 sm:px-0">
-        {doctors.slice(0, 10).map((item, index) => (
+        {Array.isArray(doctors) &&doctors.slice(0, 10).map((item, index) => (
           <div onClick={() => { navigate(`/patient/appointment/${item._id}`); scrollTo(0, 0) }} key={index} className='border border-green-500 rounded-xl max-w-441 overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' >
             <img className='bg-green-50 ' src={item.image} alt="" />
             <div className='p-4'>

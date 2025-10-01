@@ -20,16 +20,16 @@ const Signupdoctor = () => {
     age: "",
     gender: "",
     phoneNo: "",
-    city: "",
-    state: "",
-    qualification: "",
-    specializations: [],
+    city: "",//
+    state: "",//
+    qualification: "",//
+    specializations: [],//
     experience: "",
     workplace: "",
-    registrationNumber: "",
+    registrationNumber: "",//
     consultationTypes: [],
-    timeSlots: [],
-    Fee: "",
+    timeSlots: [],//delete
+    Fee: "",//
     clinicDetails: {
       name: "",
       address: "",

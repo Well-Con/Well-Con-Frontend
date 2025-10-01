@@ -17,7 +17,7 @@ export const useApiAction = () => {
         return;
       }
 
-      callback?.(response?.data ?? response, null);
+      callback?.(true, response?.data ?? response, null);
     } catch (error) {
       callback?.(null, error);
     } finally {

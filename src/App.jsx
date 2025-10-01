@@ -73,7 +73,7 @@ function App() {
         <Route path="/history" element={<History />} />
       </Route>
     </Routes>
-    <Toaster position="top-center" reverseOrder={fasle} />
+    <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 }
