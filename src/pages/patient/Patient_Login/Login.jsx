@@ -3,6 +3,7 @@ import usePatient from '../../../api/usePatient'
 import { useNavigate } from 'react-router-dom';
 
 const PatientLogin = () => {
+    const navigate = useNavigate();
     const [state, setState] = React.useState("Sign-Up"); // login or register
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
@@ -12,7 +13,7 @@ const PatientLogin = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         setLoading(true);
-        const payload =
+      const payload =
       state === "Sign-Up"
         ? { name, email, password }
         : { email, password };
@@ -22,8 +23,9 @@ const PatientLogin = () => {
         setLoading(false);
         if (success) {
           console.log("Signup successful:", data);
-          alert("Signup successful!");
-          setState("Login"); // after signup redirect to login
+          
+          setState("Login");
+          navigate(()=>'/patient/home')
         } else {
           console.error("Signup failed");
         }
@@ -36,7 +38,7 @@ const PatientLogin = () => {
           alert("Login successful!");
           // You can save token in localStorage or context here
         } else {
-          console.error("Login failed");
+          console.error("Login failed ");
         }
       });
     }

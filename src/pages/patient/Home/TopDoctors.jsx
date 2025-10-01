@@ -45,7 +45,7 @@ const TopDoctors = () => {
               <div className='flex items-centre gap-2 text-sm text-centre text-green-500 '>
                 <p className='w-2 h-2 bg-green-500 rounded-full mt-1.5'></p><p>Available</p>
               </div>
-              <p className='text-gray-900 text-lg font-medium'>{item.name}</p>
+              <p className='text-gray-900 text-lg font-medium'>{item.user.name}</p>
               <p className='text-gray-600 text-sm'>
                 {item.expertise && item.expertise.join(", ")}
               </p>
