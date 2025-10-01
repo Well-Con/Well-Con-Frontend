@@ -1,14 +1,14 @@
 import React, { use, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../../../context/AppContext';
+import { DoctorContextProvider } from '../../../context/DoctorContext';
 import { useContext } from 'react';
 import { assets } from '../../../assets/assets';
 import RelatedDoctors from './RelatedDoctors';
 
 function ConformAppointment() {
   const {docId}= useParams();
-  const {doctors,dollarSignOnetime} = useContext(AppContext);
+  const {doctors,dollarSignOnetime} = useContext(DoctorContextProvider);
   const daysofWeek=['SUN','MON','TUE','WED','THU','FRI','SAT'];
   const [docInfo,setDocInfo]=React.useState({});
   const [docSlots,setDocSlots]=React.useState([]);

@@ -1,37 +1,25 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../../../context/AppContext';
+import { DoctorContext } from '../../../context/DoctorContext';
 import useDoctor from "../../../api/useDoctor";
 import useUser from '../../../api/useUser';
 import { useState, useEffect } from 'react';
-
 
 const TopDoctors = () => {
   const navigate = useNavigate();
   const { getAllDoctors, doctorLoading } = useDoctor();
   const { getUserById, userLoading } = useUser();
-  const [doctors, setDoctors] = useState([]);
+  const { doctors, loading, searchDoctors } = useContext(DoctorContext);
+  
 
-
-
-  useEffect(() => {
-    
-    getAllDoctors((res) => {
-      if (res?.success) {
-        setDoctors(res.data); // <-- if API actually has `data`
-      } else {
-        setDoctors(res);
-       // <-- if API directly gives array
-      }
-
-     
-
-    });
-
-    
-  }, []);
-
-   console.log(doctors);
+   console.log(doctors);  
+  if(loading){
+    return(
+      <div>
+        loading...
+      </div>
+    )
+  }
 
   return (
     <div className='flex flex-col items-center gap-4 my-16 text-gray-900  md:mx-10' >

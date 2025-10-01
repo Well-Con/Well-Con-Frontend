@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import { AppContext } from '../../../context/AppContext'
+import { Doc } from '../../../context/DoctorContext'
 
 function PatientAppointments() {
-  const { doctors } = useContext(AppContext)
+  const { doctors } = useContext(DoctorContextProvider)
 
   return (
     <div>

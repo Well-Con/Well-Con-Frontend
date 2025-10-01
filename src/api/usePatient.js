@@ -15,7 +15,7 @@ const usePatient = () => {
   // Patient login
   const loginPatient = (payload, callback) =>
     runApi(
-      () => axios_instance.post('/auth/loginUser', payload),
+      () => axios_instance.post('/auth/login', payload),
       'Failed to login patient. Please try again',
       callback,
     );
