@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Doc } from '../../../context/DoctorContext'
+import  DoctorContextProvider  from '../../../context/DoctorContext'
 
 function PatientAppointments() {
   const { doctors } = useContext(DoctorContextProvider)

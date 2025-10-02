@@ -1,7 +1,7 @@
 import React, { use, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import { DoctorContextProvider } from '../../../context/DoctorContext';
+import  DoctorContextProvider  from '../../../context/DoctorContext';
 import { useContext } from 'react';
 import { assets } from '../../../assets/assets';
 import RelatedDoctors from './RelatedDoctors';

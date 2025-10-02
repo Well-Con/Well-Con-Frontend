@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { DocotorContextProvider } from '../../../context/DoctorContext';
+import  {DoctorContext }  from '../../../context/DoctorContext';
 import { useNavigate } from 'react-router-dom'; 
 
 function SearchDoctor() {
   const {speciality} = useParams();
   const navigate = useNavigate();
-  const {doctors}= useContext(DoctorContextProvider);
+  const {doctors}= useContext(DoctorContext );
   const [filterDoc,setFilterDoc]=React.useState([]);
   const applyFilter=()=>{
     if(speciality){
