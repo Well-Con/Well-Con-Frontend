@@ -1,14 +1,30 @@
 import PropTypes from 'prop-types'
-import React, { Component, useState } from 'react'
+import React, { Component, useState ,useContext,useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { assets } from '../assets/assets.js';
+import { UserContext } from '../context/UserContext.jsx';
 
 const PatientNavbar=()=>{
+  const {user,setUser}=useContext(UserContext);
   const navigate=useNavigate();
   const [showMenu,setShowMenu]=useState(false);
   
-  const [token ,settoken]=useState(true);
+  const [token, setToken] = useState(localStorage.getItem('token') ? true : false);
+    useEffect(() => {
+    const handleStorageChange = () => {
+      setToken(localStorage.getItem('token') ? true : false);
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
+    const handleLogout = () => {
+    localStorage.removeItem('token'); // remove token from localStorage
+    setToken(false); // update local state
+    setUser(null); // clear user context
+    navigate('/patient/login'); // redirect to login page
+  }
 
  
     return (
@@ -63,7 +79,7 @@ const PatientNavbar=()=>{
             <div className='absolute top-4 right-38 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block' >
               <div className={`min-w-48 bg-stone-100 rounded flex flex-col gwp-4 p-4`}>
                 <p onClick={()=>navigate('/patient/profile')} className='hover:text-black cursor-pointer'>My Profile</p>
-                <p onClick={()=>settoken(false)} className='hover:text-black cursor-pointer'>Logout</p>
+                <p onClick={handleLogout} className='hover:text-black cursor-pointer'>Logout</p>
 
               </div>
             </div>

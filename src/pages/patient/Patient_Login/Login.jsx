@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState, useContext } from "react";
 import usePatient from '../../../api/usePatient'
 import { useNavigate } from 'react-router-dom';
-import {useState} from 'react'
+
 import toast from "react-hot-toast";
+import { UserContext } from '../../../context/UserContext';
 
 const PatientLogin = () => {
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [state, setState] = React.useState("Sign-Up"); // login or register
   const [email, setEmail] = React.useState("");
@@ -49,7 +51,8 @@ const PatientLogin = () => {
         setLoading(false);
         if (success) {
           console.log("Signup successful:", data);
-           localStorage.setItem("user", JSON.stringify(data));
+          setUser(data.user);
+           localStorage.setItem("user", JSON.stringify(data.token));
           // localStorage.setItem("token", data.token);
           toast.success("Signup successful!");
 
@@ -64,7 +67,7 @@ const PatientLogin = () => {
         setLoading(false);
         if (success) {
           console.log("Login successful:", data);
-          localStorage.setItem("user", JSON.stringify(data.user));
+           setUser(data.user);
           localStorage.setItem("token", data.token);
            toast.success("Login successful!");
           navigate("/patient/home");
