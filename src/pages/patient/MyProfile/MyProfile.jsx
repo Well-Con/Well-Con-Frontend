@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { assets } from '../../../assets/assets'
+import { UserContext } from '../../../context/UserContext';
 
 function PatientProfile() {
+  const { user } = useContext(UserContext);
+  console.log("User from context:", user);
   const [userData, setUserData] = useState({
     name: "John Doe",
     image: assets.profile_pic,
@@ -26,49 +29,32 @@ function PatientProfile() {
   return (
     <div className='flex flex-col gap-2 text-sm max-w-lg '>
 
-      <img className='w-36  rounded' src={assets.profile_pic} alt="" />
+      {/* <img className='w-36  rounded' src={assets.profile_pic} alt="" /> */}
       {
         isEdit ?
           <input className='bg-gray-50 text-3xl font-medium max-w-60 mt-4 border border-gray-400 rounded' type="text" value={userData.name} onChange={(e) => setUserData(prev => ({ ...prev, name: e.target.value }))} /> :
-          <p className='font-medium text-3xl  text-neutral-800 mt-4 '>{userData.name}</p>
+          <p className='font-medium text-3xl  text-neutral-800 mt-4 '>{user.name}</p>
       }
       <div className='flex flex-col gap-4 text-neutral-700'>
         <hr  className='bg-zinc-400 h-[1px] border-none'/>
         <p className='text-neutral-500 underline mt-3'>CONTACT INFORMATION</p>
         <div className='flex flex-row gap-5'>
           <p className='font-medium'>Email id: </p>
-          <p className='text-green-500'>{userData.email}</p>
+          <p className='text-green-500'>{user.email}</p>
         </div>
         <div className='flex flex-row gap-7'>
           <p  className='font-medium'>Phone:</p>
           {
             isEdit ?
-              <input required className='border border-gray-400 rounded' type="telephone" value={userData.phone} onChange={(e) => setUserData(prev => ({ ...prev, phone: e.target.value }))} /> :
-              <p className='bg-gray-50'>{userData.phone}</p>
+              <input required className='border border-gray-400 rounded' type="telephone" value={user.phone} onChange={(e) => setUserData(prev => ({ ...prev, phone: e.target.value }))} /> :
+              <p className='bg-gray-50'>{user.phoneNo}</p>
           }
         </div>
 
-        <div className='flex flex-row gap-5'>
-          <p className='font-medium'>Address:</p>
-          {
-            isEdit ?
-              <div className='flex flex-col gap-1'>
-                <input className='border border-gray-400 rounded' type="text" value={userData.address.locality} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, locality: e.target.value } }))} />
-                <input className='border border-gray-400 rounded' type="text" value={userData.address.city} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, city: e.target.value } }))} />
-                <input className='border border-gray-400 rounded' type="text" value={userData.address.state} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, state: e.target.value } }))} />
-                <input className='border border-gray-400 rounded' type="text" value={userData.address.country} onChange={(e) => setUserData(prev => ({ ...prev, address: { ...prev.address, country: e.target.value } }))} />
+       
 
-              </div> :
-              <div>
-                <p>{userData.address.locality} </p>
-                <p>{userData.address.city}</p>
-                <p>{userData.address.state}</p>
-                <p>{userData.address.country}</p>
-
-              </div>
-
-          }
-        </div>
+          
+        
 
         <p className='text-neutral-500 underline mt-3'>BASIC INFORMATION</p>
 
@@ -80,7 +66,7 @@ function PatientProfile() {
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select> :
-              <p>{userData.gender}</p>
+              <p>{user.gender}</p>
           }
 
         </div>
@@ -90,7 +76,7 @@ function PatientProfile() {
           {
             isEdit ?
               <input className='border border-gray-400 rounded' type="telephone" value={userData.age} onChange={(e) => setUserData(prev => ({ ...prev, age: e.target.value }))} /> :
-              <p>{userData.age} years</p>
+              <p>{user.age} years</p>
           }
          
         </div>

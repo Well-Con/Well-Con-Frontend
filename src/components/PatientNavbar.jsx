@@ -23,7 +23,7 @@ const PatientNavbar=()=>{
     localStorage.removeItem('token'); // remove token from localStorage
     setToken(false); // update local state
     setUser(null); // clear user context
-    navigate('/patient/login'); // redirect to login page
+  
   }
 
  
