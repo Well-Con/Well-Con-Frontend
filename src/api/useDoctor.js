@@ -29,12 +29,15 @@ const useDoctor = () => {
     callback
   );
 
-  const getAllDoctors = (callback) =>
-    runApi(
-      () => axios_instance.get('/doctor/getAllDoctors'),
-      "Failed to fetch doctors. Please try again",
-      callback
-    );
+const getAllDoctors = async () => {
+  try {
+    const response = await axios_instance.get('/doctor/getAllDoctors');
+    return response.data; // return the data directly
+  } catch (error) {
+    console.error("Failed to fetch doctors", error);
+    return [];
+  }
+};
 
 
   const getDoctorsBySpeciality = (speciality, callback) =>

@@ -7,10 +7,10 @@ import  DoctorContextProvider  from './context/DoctorContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-      <DoctorContextProvider>
     <BrowserRouter>
+      <DoctorContextProvider>
       <App />
-    </BrowserRouter>
       </DoctorContextProvider>
+    </BrowserRouter>
   </StrictMode>
 );

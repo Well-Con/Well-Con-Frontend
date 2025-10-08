@@ -6,21 +6,26 @@ import { useNavigate } from 'react-router-dom';
 function SearchDoctor() {
   const {speciality} = useParams();
   const navigate = useNavigate();
-  const {doctors}= useContext(DoctorContext );
+  const {doctors, loading}= useContext(DoctorContext );
   const [filterDoc,setFilterDoc]=React.useState([]);
   const applyFilter=()=>{
+    console.log(doctors,"bbdic")
     if(speciality){
-      setFilterDoc(doctors.filter((doc)=>doc.speciality===speciality));
+      setFilterDoc(doctors.filter((doc)=>doc.expertise===speciality));
     }else{
       setFilterDoc(doctors);
     }
   }
+  console.log(loading)
 
   useEffect(()=>{
     applyFilter();
   },[speciality,doctors]);
 
-  console.log(speciality);
+  if(loading){
+    return(<div>Loading....</div>)
+  }
+  console.log(doctors, " adkneyn");
   return (
     <div>
       <p className='text-gray-600'>Browse through the doctors specialist.</p>
@@ -34,6 +39,7 @@ function SearchDoctor() {
           <p onClick={()=>speciality==='Gastroenterologist'? navigate('/patient/searchdoctor'): navigate('/patient/searchdoctor/Gastroenterologist')} className={`w-[94vw] sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${speciality==="Gastroenterologist"? "bg-green-50 text-black" : ""}`}>Gastroenterologist</p>
         </div>
         <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 gap-y-6 pt-5 px-3 sm:px-0">
+
           {filterDoc.map((item,index)=>(
              <div onClick={()=>{navigate(`/patient/appointment/${item._id}`); scrollTo(0,0)}} key={index} className='border border-green-500 rounded-xl max-w-441 overflow-hidden cursor-pointer hover:translate-y-[-10px] transition-all duration-500 ' >
                 <img className='bg-green-50 ' src={item.image} alt="" />
@@ -41,8 +47,8 @@ function SearchDoctor() {
                     <div className='flex items-centre gap-2 text-sm text-centre text-green-500 '>
                         <p className='w-2 h-2 bg-green-500 rounded-full mt-1.5'></p><p>Available</p>
                     </div>
-                     <p className='text-gray-900 text-lg font-medium'>{item.name}</p>
-                     <p className='text-gray-600 text-sm'>{item.speciality}</p>
+                     {/* <p className='text-gray-900 text-lg font-medium'>{item.user.name}</p> */}
+                     <p className='text-gray-600 text-sm'>{item.expertise}</p>
                 </div>
              </div>
 

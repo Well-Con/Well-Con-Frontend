@@ -1,41 +1,43 @@
 import React, { createContext, useState, useEffect } from "react";
-import useDoctorApi from "../api/useDoctor"; // your API hooks
+import useDoctor from "../api/useDoctor";
 
 export const DoctorContext = createContext();
 
 const DoctorContextProvider = ({ children }) => {
-  const { getAllDoctors: fetchAllDoctors } = useDoctorApi(); // your API method
+  const { getAllDoctors: fetchAllDoctors } = useDoctor();
+
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Fetch all doctors
+  // Fetch all doctors using async/await
   const getAllDoctors = async () => {
     setLoading(true);
-    fetchAllDoctors((res) => {
+    try {
+      const data = await fetchAllDoctors(); // now returns array directly
+      setDoctors(data || []);
+    } catch (error) {
+      console.error("Failed to fetch doctors", error);
+      setDoctors([]);
+    } finally {
       setLoading(false);
-      if (res?.success) {
-        setDoctors(res.data);
-      } else {
-        setDoctors([]);
-        console.error("Failed to fetch doctors");
-      }
-    });
+    }
   };
 
   // Fetch single doctor by ID
   const getDoctorById = (id) => {
-    return doctors.find((doc) => doc._id === id) || null;
-  };  
+    return doctors.find((doc) => doc.id === id) || null;
+  };
 
-  // Optional: Search doctors by name or expertise
+  // Search doctors by expertise or registrationNo
   const searchDoctors = (query) => {
     return doctors.filter(
       (doc) =>
-        doc.user.name.toLowerCase().includes(query.toLowerCase()) ||
         (doc.expertise &&
           doc.expertise.some((exp) =>
             exp.toLowerCase().includes(query.toLowerCase())
-          ))
+          )) ||
+        (doc.registrationNo &&
+          doc.registrationNo.toLowerCase().includes(query.toLowerCase()))
     );
   };
 

@@ -7,20 +7,15 @@ import { useState, useEffect } from 'react';
 
 const TopDoctors = () => {
   const navigate = useNavigate();
-  const { getAllDoctors, doctorLoading } = useDoctor();
-  const { getUserById, userLoading } = useUser();
-  const { doctors, loading, searchDoctors } = useContext(DoctorContext);
+   const {doctors, loading}= useContext(DoctorContext );
+  
   
 
-   console.log(doctors);  
-  if(loading){
-    return(
-      <div>
-        loading...
-      </div>
-    )
-  }
+  
+  
 
+   console.log(doctors,"top doctors");  
+ 
   return (
     <div className='flex flex-col items-center gap-4 my-16 text-gray-900  md:mx-10' >
       <h1 className='text-3xl font-medium'>Top Doctors to Book</h1>

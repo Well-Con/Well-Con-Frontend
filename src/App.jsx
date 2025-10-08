@@ -28,9 +28,11 @@ import PatientChat from './pages/patient/Chat/chat.jsx';
 
 import { Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import DoctorContextProvider from './context/DoctorContext.jsx';
 
 function App() {
   return (
+  <DoctorContextProvider>
     <>
     <Routes>
       {/* Doctor auth */}
@@ -75,6 +77,7 @@ function App() {
     </Routes>
     <Toaster position="top-center" reverseOrder={false} />
     </>
+    </DoctorContextProvider>
   );
 }
 
