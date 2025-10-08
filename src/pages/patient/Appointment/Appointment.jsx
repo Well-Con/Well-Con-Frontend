@@ -11,8 +11,8 @@ function ConformAppointment() {
   const {docId}= useParams();
  
   const {doctors,dollarSignOnetime } = useContext(DoctorContext);
-  console.log("Context instance:", DoctorContext);
-   console.log(dollarSignOnetime,"gvulvgkj");
+ 
+ 
   const daysofWeek=['SUN','MON','TUE','WED','THU','FRI','SAT'];
   const [docInfo,setDocInfo]=React.useState({});
   const [docSlots,setDocSlots]=React.useState([]);
@@ -68,21 +68,18 @@ function ConformAppointment() {
     const docInfo=  doctors.find((doc)=>doc.id===docId);
     setDocInfo(docInfo);
 
-    console.log(docInfo);
+    console.log(docInfo,"docInformation");
   }
 
   useEffect(()=>{
     fetchDocInfo();
-  },[doctors,docId]);
+  },[]);
 
   useEffect(()=>{
     getAvailableSlots();
   },[docInfo]);
 
-  useEffect(()=>{
-    console.log(docSlots);
-
-  },[docSlots]);
+ 
 
 
   return (
@@ -90,16 +87,16 @@ function ConformAppointment() {
       {/* ---------Doctor details----------- */}
       <div className='flex flex-col sm:flex-row gap-4'>
        <div>
-         {/* <img className='bg-green-100 w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt="" /> */}
+         <img className='bg-green-100 w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt="" />
        </div>
        <div className='flex-1 border border-gray-400 p-8 py-7 bg-white rounded-lg mx-2 sm:mx-0 mt-[-80] sm:mt-0 '>
         {/* ----Doctor info- name , detail experience------- */}
           <p className='flex items-center gap-2 text-2xl font-medium text-gray-900 '>
-            {docInfo.name} 
+            {docInfo.user.name} 
             <img className='w-4 h-4 mt-2 ml-1 ' src={assets.verified_icon} alt="" />
           </p>
           <div className='flex items-center gap-2 text-sm mt-1 text-gray-600 my-3'>
-            <p>{docInfo.degree } - {docInfo.speciality}</p> 
+            <p>{docInfo.education?.join(", ")} - {docInfo.expertise?.join(",")}</p> 
             <button className='py-0.5 px-2 border text-xs rounded-full'>{docInfo.experience}</button>
           </div>
 
@@ -112,7 +109,7 @@ function ConformAppointment() {
             <p className='text-sm text-gray-500 max-w-[700px] mt-1'>{docInfo.about}</p>
           </div>
           <p className='font-medium text-gray-500 mt-4'>
-            Appointment fees: <span className='text-gray-600'>{dollarSignOnetime}{docInfo.fees}</span>
+            Appointment fees: <span className='text-gray-600'>{dollarSignOnetime}{docInfo.consultationFee[0]}</span>
           </p>
        </div>
       </div>
