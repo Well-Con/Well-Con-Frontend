@@ -73,7 +73,7 @@ function ConformAppointment() {
 
   useEffect(() => {
     fetchDocInfo();
-  }, []);
+  }, [doctors]);
 
   useEffect(() => {
     getAvailableSlots();
@@ -96,7 +96,7 @@ function ConformAppointment() {
             <img className='w-4 h-4 mt-2 ml-1 ' src={assets.verified_icon} alt="" />
           </p>
           <div className='flex items-center gap-2 text-sm mt-1 text-gray-600 my-3'>
-            <p>{docInfo.education?.join(", ")} - {docInfo.expertise?.join(",")}</p>
+            <p>{docInfo.education?.join(", ")} - {docInfo.expertise?.join(", ")}</p>
             {/* <button className='py-0.5 px-2 border text-xs rounded-full'>{docInfo.experience}</button> */}
           </div>
 
@@ -104,7 +104,7 @@ function ConformAppointment() {
           {/* -------Book about ------- */}
          
           <p className='font-medium text-gray-500 mt-4'>
-            Appointment fees: <span className='text-gray-600'>{dollarSignOnetime}{docInfo.consultationFee?.join(",")}</span>
+            Appointment fees: <span className='text-gray-600'>{dollarSignOnetime}{docInfo.consultationFee?.join(", ")}</span>
           </p>
           {
             <p className='font-medium text-gray-500 mt-2'>
