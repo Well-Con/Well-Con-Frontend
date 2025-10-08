@@ -1,14 +1,18 @@
-import React, { use, useEffect } from 'react'
+import React, { use, useEffect,useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-import  DoctorContext  from '../../../context/DoctorContext';
-import { useContext } from 'react';
+import { DoctorContext } from '../../../context/DoctorContext';
+
 import { assets } from '../../../assets/assets';
 import RelatedDoctors from './RelatedDoctors';
 
 function ConformAppointment() {
+
   const {docId}= useParams();
-  const {doctors,dollarSignOnetime} = useContext(DoctorContext);
+ 
+  const {doctors,dollarSignOnetime } = useContext(DoctorContext);
+  console.log("Context instance:", DoctorContext);
+   console.log(dollarSignOnetime,"gvulvgkj");
   const daysofWeek=['SUN','MON','TUE','WED','THU','FRI','SAT'];
   const [docInfo,setDocInfo]=React.useState({});
   const [docSlots,setDocSlots]=React.useState([]);
@@ -59,8 +63,11 @@ function ConformAppointment() {
 
   }
   const fetchDocInfo=()=>{
-    const docInfo=  doctors.find((doc)=>doc._id===docId);
+     console.log(docId,"bla bla");
+     console.log(doctors,"doctors");
+    const docInfo=  doctors.find((doc)=>doc.id===docId);
     setDocInfo(docInfo);
+
     console.log(docInfo);
   }
 
@@ -83,7 +90,7 @@ function ConformAppointment() {
       {/* ---------Doctor details----------- */}
       <div className='flex flex-col sm:flex-row gap-4'>
        <div>
-         <img className='bg-green-100 w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt="" />
+         {/* <img className='bg-green-100 w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt="" /> */}
        </div>
        <div className='flex-1 border border-gray-400 p-8 py-7 bg-white rounded-lg mx-2 sm:mx-0 mt-[-80] sm:mt-0 '>
         {/* ----Doctor info- name , detail experience------- */}

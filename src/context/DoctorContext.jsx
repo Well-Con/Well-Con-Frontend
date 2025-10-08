@@ -22,7 +22,7 @@ const DoctorContextProvider = ({ children }) => {
       setLoading(false);
     }
   };
-
+ const dollarSignOnetime='$';
   // Fetch single doctor by ID
   const getDoctorById = (id) => {
     return doctors.find((doc) => doc.id === id) || null;
@@ -54,6 +54,7 @@ const DoctorContextProvider = ({ children }) => {
         getAllDoctors,
         getDoctorById,
         searchDoctors,
+        dollarSignOnetime,
       }}
     >
       {children}
