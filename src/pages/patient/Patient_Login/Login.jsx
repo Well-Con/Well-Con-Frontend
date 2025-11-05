@@ -52,7 +52,7 @@ const PatientLogin = () => {
         if (success) {
           console.log("Signup successful:", data);
           setUser(data.user);
-           localStorage.setItem("user", JSON.stringify(data.token));
+           localStorage.setItem("token", JSON.stringify(data.token));
           // localStorage.setItem("token", data.token);
           toast.success("Signup successful!");
 
@@ -66,7 +66,7 @@ const PatientLogin = () => {
       loginPatient(payload, (success, data) => {
         setLoading(false);
         if (success) {
-          console.log("Login successful:", data);
+          console.log("Login hogaya:", data);
            setUser(data.user);
           localStorage.setItem("token", data.token);
            toast.success("Login successful!");

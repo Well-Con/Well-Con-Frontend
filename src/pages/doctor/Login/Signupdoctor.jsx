@@ -20,21 +20,24 @@ const Signupdoctor = () => {
     age: "",
     gender: "",
     phoneNo: "",
-    city: "",//
-    state: "",//
-    qualification: "",//
-    specializations: [],//
-    experience: "",
-    workplace: "",
-    registrationNumber: "",//
+   
+    
+    education: "",// change to education
+    expertise: [],// change it to expertise
+    experience: "",  
+    registrationNo: "",// change to registrationNo
     consultationTypes: [],
-    timeSlots: [],//delete
-    Fee: "",//
-    clinicDetails: {
-      name: "",
-      address: "",
-      contact: "",
-    },
+    consultationFee: "",// change to consultationFee
+   
+
+    //add  address
+    address:{
+      city : "",
+      state : "",
+      area : "",
+      street : "",
+      type: "",
+    }
   });
 
   // merge child updates into parent state
@@ -44,11 +47,11 @@ const Signupdoctor = () => {
 
   const handleSubmit = () => {
     console.log("Submitting doctor data:", formData);
-    registerDoctor(formData, (res) => {
-      console.log("Doctor registered:", res);
-      //redirect to dashboard page
-      window.location.href = "/dashboard";
-    });
+    // registerDoctor(formData, (res) => {
+    //   console.log("Doctor registered:", res);
+    //   //redirect to dashboard page
+    //   window.location.href = "/dashboard";
+    // });
   };
 
   return (

@@ -31,17 +31,26 @@ const Availability = ({ data, updateFormData, nextStep }) => {
     setConsultationTypes(newTypes);
     updateFormData({ consultationTypes: newTypes });
   };
+    const handleAddressChange = (e) => {
+    const { name, value } = e.target;
+    updateFormData({
+      address: {
+        ...data.address,
+        [name]: value,
+      },
+    });
+  };
 
 
   const [timeSlots, setTimeSlots] = useState([]);
 
-  const handleTimeSlotChange = (slot) => {
-    const newSlots = timeSlots.includes(slot)
-      ? timeSlots.filter((s) => s !== slot)
-      : [...timeSlots, slot];
-    setTimeSlots(newSlots);
-    updateFormData({ timeSlots: newSlots });   // ✅ update parent
-  };
+  // const handleTimeSlotChange = (slot) => {
+  //   const newSlots = timeSlots.includes(slot)
+  //     ? timeSlots.filter((s) => s !== slot)
+  //     : [...timeSlots, slot];
+  //   setTimeSlots(newSlots);
+  //   updateFormData({ timeSlots: newSlots });   // ✅ update parent
+  // };
   const handleChange = (e) => {
     updateFormData({ [e.target.name]: e.target.value });
   };
@@ -81,7 +90,7 @@ const Availability = ({ data, updateFormData, nextStep }) => {
                     type="checkbox"
                     className="form-checkbox text-teal-600"
                     checked={timeSlots.includes(slot)}
-                    onChange={() => handleTimeSlotChange(slot)}
+                    // onChange={() => handleTimeSlotChange(slot)}
                   />
                   {slot}
 
@@ -98,7 +107,7 @@ const Availability = ({ data, updateFormData, nextStep }) => {
               Type of Consultation
             </label>
             <div className="flex flex-wrap gap-4">
-              {["Video", "Chat", "In-person"].map((type) => (
+              {["Online", "InPerson"].map((type) => (
                 <label
                   key={type}
                   className="inline-flex items-center gap-2 text-gray-700"
@@ -117,59 +126,61 @@ const Availability = ({ data, updateFormData, nextStep }) => {
 
           {/* Consultation Fee */}
           <input
-            required
+            
             type="number"
             placeholder="Consultation Fee (₹)"
-            name="Fee"
-            value={data.Fee}
+            name="consultationFee"
+            value={data.consultationFee}
             onChange={handleChange}
             className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           />
 
-          {/* Clinic/Hospital Details (Only if "In-person" selected) */}
-          {isInPersonSelected && (
-            <>
+          {/* Address Section */}
+          <div className="col-span-full border border-gray-300 p-4 rounded-md">
+            <h3 className="text-lg font-semibold mb-3 text-gray-800">Address</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input
-                required
                 type="text"
-                placeholder="Clinic/Hospital Name"
-                name="Clinic Name"
-                value={clinicDetails.name}
-                onChange={(e) => {
-                  const updated = { ...clinicDetails, name: e.target.value };
-                  setClinicDetails(updated);
-                  updateFormData({ clinicDetails: updated });
-                }}
-                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                name="city"
+                value={data.address?.city || ""}
+                onChange={handleAddressChange}
+                placeholder="City"
+                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
-                required
                 type="text"
-                placeholder="Clinic Address"
-                name="Clinic Address"
-                value={clinicDetails.address}
-                onChange={(e) => {
-                  const updated = { ...clinicDetails, name: e.target.value };
-                  setClinicDetails(updated);
-                  updateFormData({ clinicDetails: updated });
-                }}
-                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                name="state"
+                value={data.address?.state || ""}
+                onChange={handleAddressChange}
+                placeholder="State"
+                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               />
               <input
-                required
                 type="text"
-                placeholder="Clinic Contact Number"
-                name="Clinic Contact Number"
-                value={clinicDetails.contact}
-               onChange={(e) => {
-                  const updated = { ...clinicDetails, name: e.target.value };
-                  setClinicDetails(updated);
-                  updateFormData({ clinicDetails: updated });
-                }}
-                className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                name="area"
+                value={data.address?.area || ""}
+                onChange={handleAddressChange}
+                placeholder="Area"
+                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
               />
-            </>
-          )}
+              <input
+                type="text"
+                name="street"
+                value={data.address?.street || ""}
+                onChange={handleAddressChange}
+                placeholder="Street"
+                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+              <input
+                type="text"
+                name="type"
+                value={data.address?.type || ""}
+                onChange={handleAddressChange}
+                placeholder="Address Type (Home / Clinic)"
+                className="p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+            </div>
+          </div>
 
 
           <div className="flex justify-center m-6 col-span-full">
