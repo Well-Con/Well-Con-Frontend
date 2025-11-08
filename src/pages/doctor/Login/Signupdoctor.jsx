@@ -22,7 +22,7 @@ const Signupdoctor = () => {
     phoneNo: "",
    
     
-    education: "",// change to education
+    education: [],// change to education
     expertise: [],// change it to expertise
     experience: "",  
     registrationNo: "",// change to registrationNo

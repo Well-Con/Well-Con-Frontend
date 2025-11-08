@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DoctorProgressBar from "../contains/progress";
 import { WithContext as ReactTags } from "react-tag-input";
+import toast from "react-hot-toast";
 
 const KeyCodes = {
   comma: 188,
@@ -22,7 +23,7 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
     e.preventDefault();
 
     if (tags.length === 0) {
-      alert("Please add at least one area of expertise");
+      toast.error("Please add at least one area of expertise");
       return;
     }
     nextStep();
