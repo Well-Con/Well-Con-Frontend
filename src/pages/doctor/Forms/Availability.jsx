@@ -1,25 +1,20 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import DoctorProgressBar from "../contains/progress";
 
 const Availability = ({ data, updateFormData, nextStep }) => {
   const [consultationTypes, setConsultationTypes] = useState([]);
-  const [clinicDetails, setClinicDetails] = useState({
-    name: "",
-    address: "",
-    contact: "",
-  });
+  const [timeSlots, setTimeSlots] = useState([]);
+
 
     const handleSubmit = (e) => {
     e.preventDefault(); // called only when inputs are valid
-    if (timeSlots.length === 0) {
-    alert("Please select at least one time slot");
-    return;
-  }
+
     if (consultationTypes.length === 0) {
-      alert("Please select at least one type of consultation");
+      toast.error("Please select at least one type of consultation");
       return;
-    } 
-  
+    }
+
     nextStep();
   };
 
@@ -42,15 +37,17 @@ const Availability = ({ data, updateFormData, nextStep }) => {
   };
 
 
-  const [timeSlots, setTimeSlots] = useState([]);
+ 
 
-  // const handleTimeSlotChange = (slot) => {
-  //   const newSlots = timeSlots.includes(slot)
-  //     ? timeSlots.filter((s) => s !== slot)
-  //     : [...timeSlots, slot];
-  //   setTimeSlots(newSlots);
-  //   updateFormData({ timeSlots: newSlots });   // ✅ update parent
-  // };
+
+  const handleTimeSlotChange = (slot) => {
+    const newSlots = timeSlots.includes(slot)
+      ? timeSlots.filter((s) => s !== slot)
+      : [...timeSlots, slot];
+    setTimeSlots(newSlots);
+    updateFormData({ timeSlots: newSlots });
+  };
+
   const handleChange = (e) => {
     updateFormData({ [e.target.name]: e.target.value });
   };
@@ -70,34 +67,7 @@ const Availability = ({ data, updateFormData, nextStep }) => {
         <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
 
 
-          {/* Time Slots */}
-          <div className="md:col-span-2">
-            <label className="block mb-2 text-gray-700 font-medium">
-              Available Time Slots
-            </label>
-            <div className="flex flex-wrap gap-4">
-              {[
-                "Morning (8AM - 12PM)",
-                "Afternoon (12PM - 4PM)",
-                "Evening (4PM - 8PM)",
-              ].map((slot) => (
-                <label
-                  key={slot}
-                  className="inline-flex items-center gap-2 text-gray-700"
-                >
-                  <input
-                    
-                    type="checkbox"
-                    className="form-checkbox text-teal-600"
-                    checked={timeSlots.includes(slot)}
-                    // onChange={() => handleTimeSlotChange(slot)}
-                  />
-                  {slot}
-
-                </label>
-              ))}
-            </div>
-          </div>
+         
 
 
 
@@ -134,6 +104,7 @@ const Availability = ({ data, updateFormData, nextStep }) => {
             onChange={handleChange}
             className="input p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           />
+          
 
           {/* Address Section */}
           <div className="col-span-full border border-gray-300 p-4 rounded-md">
