@@ -9,8 +9,14 @@ const KeyCodes = {
 
 const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
+const formatTags = (items = []) =>
+  items.map((item, index) =>
+    typeof item === "string" ? { id: `${item}-${index}`, text: item } : item
+  );
+
 const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
-  const [tags, setTags] = useState(data.expertise || []);
+  const [tags, setTags] = useState(formatTags(data.expertise || []));
+  const [educationTags, setEducationTags] = useState(formatTags(data.education || []));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,7 +28,16 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
     nextStep();
   };
 
-  const suggestions = [
+  const expertiseSuggestions = [
+    { id: "Cardiologist", text: "Cardiologist" },
+    { id: "Dermatologist", text: "Dermatologist" },
+    { id: "Neurologist", text: "Neurologist" },
+    { id: "Pediatrician", text: "Pediatrician" },
+    { id: "General Physician", text: "General Physician" },
+    { id: "Psychiatrist", text: "Psychiatrist" },
+    { id: "Orthopedic", text: "Orthopedic" },
+  ];
+  const educationSuggestions = [
     { id: "Cardiologist", text: "Cardiologist" },
     { id: "Dermatologist", text: "Dermatologist" },
     { id: "Neurologist", text: "Neurologist" },
@@ -53,11 +68,29 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
     updateFormData({ expertise: newTags.map((t) => t.text) });
   };
 
+  const handleEducationDelete = (i) => {
+    const newTags = educationTags.filter((tag, index) => index !== i);
+    setEducationTags(newTags);
+    updateFormData({ education: newTags.map((t) => t.text) });
+  };
+
+  const handleEducationAddition = (tag) => {
+    const newTags = [...educationTags, tag];
+    setEducationTags(newTags);
+    updateFormData({ education: newTags.map((t) => t.text) });
+  };
+
+  const handleEducationDrag = (tag, currPos, newPos) => {
+    const newTags = [...educationTags];
+    newTags.splice(currPos, 1);
+    newTags.splice(newPos, 0, tag);
+    setEducationTags(newTags);
+    updateFormData({ education: newTags.map((t) => t.text) });
+  };
+
   const handleChange = (e) => {
     updateFormData({ [e.target.name]: e.target.value });
   };
-
-;
 
   return (
     <div className="flex flex-col w-screen min-h-screen py-[50px]">
@@ -70,22 +103,34 @@ const ProfessionalDetails = ({ data, updateFormData, nextStep }) => {
 
         <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
           {/* Education */}
-          <input
-            
-            type="text"
-            name="education"
-            value={data.education || ""}
-            onChange={handleChange}
-            placeholder="Education / Qualification(s)"
-            className="p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-          />
+          <div className="p-2 border border-gray-300 rounded-md">
+            <label className="block text-gray-700 mb-2">Education</label>
+            <ReactTags
+              tags={educationTags}
+              suggestions={educationSuggestions}
+              handleDelete={handleEducationDelete}
+              handleAddition={handleEducationAddition}
+              handleDrag={handleEducationDrag}
+              delimiters={delimiters}
+              placeholder="Type education..."
+              autofocus={false}
+              classNames={{
+                tags: "flex flex-wrap gap-2",
+                tag: "bg-green-500 text-white pl-3 py-1 rounded-full flex items-center",
+                remove: "ml-2 text-white cursor-pointer font-bold",
+                suggestions:
+                  "border border-gray-300 rounded-md mt-2 bg-white shadow-md",
+                activeSuggestion: "bg-green-100 cursor-pointer",
+              }}
+            />
+          </div>
 
           {/* Expertise */}
           <div className="p-2 border border-gray-300 rounded-md">
             <label className="block text-gray-700 mb-2">Expertise</label>
             <ReactTags
               tags={tags}
-              suggestions={suggestions}
+              suggestions={expertiseSuggestions}
               handleDelete={handleDelete}
               handleAddition={handleAddition}
               handleDrag={handleDrag}
